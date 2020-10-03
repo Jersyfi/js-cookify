@@ -4,6 +4,7 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Contributing](#contributing)
 
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.
