@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jersyfi/Cookify.git"
+    "url": "https://github.com/Jersyfi/Cookify.git"
   },
   "keywords": [
+    "Cookify",
     "GDPR",
-    "Cookie",
-    "Consent",
+    "Cookie Consent",
     "Cookie",
     "Banner"
   ],
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Jersyfi/Cookify/issues"
   },
-  "homepage": "https://github.com/Jersyfi/Cookify#readme"
+  "homepage": "https://github.com/Jersyfi/Cookify#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
