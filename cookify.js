@@ -8,6 +8,15 @@ class Cookify {
         this.expire = 365;
         this.modal = new Object;
         this.bootstrap = false;
+        this.button = {
+            "dimension": "35px",
+            "bgColor": "#007bff",
+            "color": "black",
+            "svg": '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"><g id="Groß"><g><path d="M969.635,333.847c-38.408,-69.046 -82.482,-135.762 -134.394,-192.886" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M96.652,777.23c-3.504,-23.042 -6.352,-45.952 -8.418,-68.563" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M194.789,879.877c-65.696,-278.949 -57.582,-592.278 266.881,-674.378" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M291.038,946.484c-85.568,-271.25 -109.687,-598.361 223.941,-681.959c205.693,-51.54 326.036,136.416 389.424,299.25c10.586,27.194 26.46,83.235 52.052,144.892" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M386.13,985.155c-96.441,-254.92 -143.566,-563.394 145.321,-641.013c188.843,-50.738 268.2,176.448 322.586,317.095c10.626,27.479 27.451,76.67 53.806,130.615" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M478.77,1000.73c-91.239,-224.009 -149.329,-491.168 44.445,-570.105c163.376,-66.555 241.42,230.468 274.541,311.603c8.481,20.775 25.307,65.304 52.495,115.631" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M647.361,975.018c-45.633,-90.697 -95.854,-213.361 -81.592,-349.472c0,0 56.413,167.817 159.108,327.938" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M565.769,992.444c-81.464,-177.409 -135.416,-371.667 -37.063,-456.123c115.489,-99.171 100.69,121.112 266.304,377.493" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M896.526,544.142c0,0 -210.468,-498.084 -502.474,-403.16c-105.646,34.343 -201.42,96.096 -268.656,192.865" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M994.756,581.846c-30.094,-77.751 -60.531,-156.994 -98.23,-218.875c-83.534,-137.116 -271.971,-412.563 -584.622,-282.388c-229.544,95.573 -278.591,344.179 -286.573,492.615" style="fill:none;stroke:#000;stroke-width:37.5px;"/></g></g></svg>',
+            "text": "",
+            "fontSize": "1rem",
+            "lineHeight": "1rem",
+        };
         this.settings = {
             "necessary" : {
                 "name": "Necessary",
@@ -73,6 +82,48 @@ class Cookify {
                         this.expire = element;
                         break;
 
+                    case "button":
+                        for (const value in element) {
+                            if (element.hasOwnProperty(value)) {
+                                const content = element[value];
+                                
+                                switch (value) {
+                                    case "dimension":
+                                        this.button["dimension"] = content;
+                                        break;
+
+                                    case "bgColor":
+                                        this.button["bgColor"] = content;
+                                        break;
+
+                                    case "color":
+                                        this.button["color"] = content;
+                                        break;
+
+                                    case "svg":
+                                        this.button["svg"] = content;
+                                        break;
+
+                                    case "text":
+                                        this.button["text"] = content;
+                                        break;
+
+                                    case "fontSize":
+                                        this.button["fontSize"] = content;
+                                        break;
+
+                                    case "lineHeight":
+                                        this.button["lineHeight"] = content;
+                                        break;
+                                
+                                    default:
+                                        console.log("'" + value + "' no valid init");
+                                        break;
+                                }
+                            }
+                        }
+                        break;
+
                     case "modal":
                         this.modal = element;
                         break;
@@ -86,7 +137,7 @@ class Cookify {
                         break;
 
                     default:
-                        console.log("Cookify: wrong init value '" + key + "'");
+                        console.log("'" + key + "' no valid init");
                         break;
                 }
             }
@@ -133,11 +184,26 @@ class Cookify {
 
     HtmlButton() {
         var button = document.createElement("button"),
-        img = document.createElement("img");
+        div = document.createElement("div");
 
-        button.className = "btn btn-primary btn-lg shadow rounded-pill fixed-bottom float-left m-3 p-1";
+        button.className = "btn btn-lg shadow rounded-pill fixed-bottom float-left m-3 p-1";
+        button.style.backgroundColor = this.button["bgColor"];
+        button.style.lineHeight = this.button["lineHeight"];
         button.id = "cookieButton";
-        button.innerHTML = '<svg width="35px" height="35px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"><g id="Groß"><g><path d="M969.635,333.847c-38.408,-69.046 -82.482,-135.762 -134.394,-192.886" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M96.652,777.23c-3.504,-23.042 -6.352,-45.952 -8.418,-68.563" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M194.789,879.877c-65.696,-278.949 -57.582,-592.278 266.881,-674.378" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M291.038,946.484c-85.568,-271.25 -109.687,-598.361 223.941,-681.959c205.693,-51.54 326.036,136.416 389.424,299.25c10.586,27.194 26.46,83.235 52.052,144.892" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M386.13,985.155c-96.441,-254.92 -143.566,-563.394 145.321,-641.013c188.843,-50.738 268.2,176.448 322.586,317.095c10.626,27.479 27.451,76.67 53.806,130.615" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M478.77,1000.73c-91.239,-224.009 -149.329,-491.168 44.445,-570.105c163.376,-66.555 241.42,230.468 274.541,311.603c8.481,20.775 25.307,65.304 52.495,115.631" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M647.361,975.018c-45.633,-90.697 -95.854,-213.361 -81.592,-349.472c0,0 56.413,167.817 159.108,327.938" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M565.769,992.444c-81.464,-177.409 -135.416,-371.667 -37.063,-456.123c115.489,-99.171 100.69,121.112 266.304,377.493" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M896.526,544.142c0,0 -210.468,-498.084 -502.474,-403.16c-105.646,34.343 -201.42,96.096 -268.656,192.865" style="fill:none;stroke:#000;stroke-width:37.5px;"/><path d="M994.756,581.846c-30.094,-77.751 -60.531,-156.994 -98.23,-218.875c-83.534,-137.116 -271.971,-412.563 -584.622,-282.388c-229.544,95.573 -278.591,344.179 -286.573,492.615" style="fill:none;stroke:#000;stroke-width:37.5px;"/></g></g></svg>'
+        button.style.color = this.button["color"];
+
+        if (this.button["text"] == "") {
+            div.style.width = this.button["dimension"];
+            div.style.height = "auto";
+            div.style.lineHeight = "0";
+            div.innerHTML = this.button["svg"];
+
+            button.appendChild(div);
+        } else {
+            button.innerText = this.button["text"];
+            button.style.fontSize = this.button["fontSize"]
+        }
+        
         document.body.appendChild(button);
 
         // Button Events
@@ -269,7 +335,7 @@ class Cookify {
                 inputCheckbox.value = "";
                 inputCheckbox.id = "cookieCheck" + this.ucfirst(setting);
                 labelCheckbox.className = "custom-control-label";
-                labelCheckbox.setAttribute("for", "cookieCheck" + this.ucfirst(setting));
+                labelCheckbox.htmlFor = "cookieCheck" + this.ucfirst(setting);
                 h5Checkbox.className = "text-dark";
                 pCheckbox.className = "text-dark";
                 pCheckbox.innerText = "";
@@ -309,9 +375,6 @@ class Cookify {
                 div5.appendChild(divCheckbox);
             }
         }
-
-        
-
         
         labelCheckbox.appendChild(h5Checkbox);
         labelCheckbox.appendChild(pCheckbox);
