@@ -1,0 +1,26 @@
+{
+  "name": "cookify",
+  "version": "0.3.2",
+  "description": "Simple fully customizable GDPR Cookie Consent Banner",
+  "main": "cookify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jersyfi/Cookify.git"
+  },
+  "keywords": [
+    "GDPR",
+    "Cookie",
+    "Consent",
+    "Cookie",
+    "Banner"
+  ],
+  "author": "Jérôme Bastian Winkel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jersyfi/Cookify/issues"
+  },
+  "homepage": "https://github.com/Jersyfi/Cookify#readme"
+}
