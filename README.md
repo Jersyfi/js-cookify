@@ -17,7 +17,7 @@ Project is created with:
 ## Setup
 To run this project, download it.
 
-##Contributing
+## Contributing
 To get started you need to insert the below code into your html code.
 
 ```html
@@ -27,4 +27,34 @@ To get started you need to insert the below code into your html code.
         cookify.init();
     });
 </script>
+```
+
+Inside the `cookify.init();` you can customize a huge range.
+
+```javascript
+cookify.init({
+    "name": "cookify",
+    "expire": 30,
+    "bootstrap": true,
+    "button": {
+        "dimension": "35px",
+        "bgColor": "#007bff",
+        "color": "black",
+        "svg": insert svg here,
+        "text": insert text here,
+        "fontSize": "1rem",
+        "lineHeight": "1rem",
+    },
+    "settings": {
+        "necessary": {
+            "name": "Necessary",
+            "desc": "Description of necessary",
+        },
+        "marketing": {
+            "name": "Marketing",
+            "desc": "Description of analytics",
+        },
+        and more...
+    },
+});
 ```
