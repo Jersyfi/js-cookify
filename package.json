@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jersyfi/Cookify.git"
+    "url": "https://github.com/jersyfi/cookify.git"
   },
   "keywords": [
     "Cookify",
@@ -20,10 +20,7 @@
   "author": "Jérôme Bastian Winkel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Jersyfi/Cookify/issues"
+    "url": "https://github.com/jersyfi/cookify/issues"
   },
-  "homepage": "https://github.com/Jersyfi/Cookify#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  "homepage": "https://github.com/jersyfi/cookify#readme"
 }
