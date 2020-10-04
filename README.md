@@ -4,7 +4,8 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Contributing](#contributing)
+* [Get Started](#get-started)
+* [Options](#options)
 
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.
@@ -16,9 +17,11 @@ Project is created with:
 * JavaScript 1.8.5
 
 ## Setup
-To run this project, download it.
+To run this project, use npm to install.
 
-## Contributing
+`npm i cookify`
+
+## Get Started
 To get started you need to insert the below code into your html code.
 
 ```html
@@ -30,6 +33,7 @@ To get started you need to insert the below code into your html code.
 </script>
 ```
 
+## Options
 Inside the `cookify.init();` you can customize a huge range.
 
 ```javascript
