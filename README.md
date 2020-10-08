@@ -8,7 +8,7 @@
 * [Options](#options)
 
 ## General info
-This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.
+This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
 The Bootstrap Javascript Librarays are not necessary for this Project.
 
 ## Technologies
@@ -22,7 +22,7 @@ To run this project, use npm to install.
 `npm i cookify`
 
 ## Get Started
-To get started first you need to insert the bootstrap css into the head of your html code.
+To get started first you need to insert the bootstrap css into the head of your html code.\
 For more Information about bootstrap visit the [Documentation](https://getbootstrap.com/docs/4.5/).
 
 ```html
