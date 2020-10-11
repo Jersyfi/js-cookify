@@ -49,18 +49,18 @@ After that you need to paste the below code into the body of your html code.
 You can customize Cookify by passing JSON data in the `cookify.init()`.
 Following is described what data you can customize
 
-1. name
+1. name\
 __type:__ string
 
 ---
 
-2. expire
+2. expire\
 __type:__ number (in days)
 
 ---
 
-3. support
-__type:__ boolean
+3. support\
+__type:__ boolean\
 __value:__ true, false
 
 ---
@@ -69,79 +69,133 @@ __value:__ true, false
 __type:__ object\
 __value:__ info, settings, button
 
-    4-1 info & settings\
+    * info & settings\
 __type:__ object\
 __value:__ header, text, position, button
 
-        4-1-1 header\
+        * header\
 __type:__ string
 
-4. 1.2 text
+        * text\
 __type:__ string
 
-4. 1.3 position
-__type:__ string
+        * position\
+__type:__ string\
 __preset:__ top-full, bottom-full, bottom-left, middle
 
-4. 1.4 button
-__type:__ object
+        * button\
+__type:__ object\
 __value:__ settings, accept, reject, save
 
-4. 1.4.1 settings, accept, reject & save
-__type:__ object
+            *  settings, accept, reject & save\
+__type:__ object\
 __value:__ text, background-color, position
 
-4. 1.4.1.1 text
+                * text\
 __type:__ string
 
-4. 1.4.1.1 background-color
-__type:__ string
+                * background-color\
+__type:__ string\
 __for:__ class
 
-4. 1.4.1.1 position
-__type:__ string
-__for:__ class
+                * position\
+__type:__ string\
+__for:__ class\
 __preset:__ full
 
-4. 2. button\
+    * button\
 __type:__ object\
 __value:__ dimension, background-color, color, svg, text, font-size, line-height
 
-4. 2.1 dimension
-__type:__ string
+        * dimension\
+__type:__ string\
 __for:__ style -> width
 
-4. 2.1 background-color
-__type:__ string
+        * background-color\
+__type:__ string\
 __for:__ style -> background-color
 
-4. 2.1 color
-__type:__ string
+        * color\
+__type:__ string\
 __for:__ style -> color
 
-4. 2.1 svg
+        * svg\
 __type:__ string
 
-4. 2.1 text
+        * text\
 __type:__ string
 
-4. 2.1 font-size
-__type:__ string
+        * font-size\
+__type:__ string\
 __for:__ style -> font-size
 
-4. 2.1 line-height
-__type:__ string
+        * line-height\
+__type:__ string\
 __for:__ style -> line-height
 
 ---
 
-5. cookies
-__type:__ object
+5. cookies\
+__type:__ object\
 __value:__ necessary (default), {cookie-type}
 
-5. 1 necessary & {cookie-type}
-__type:__ object
+    * necessary & {cookie-type}\
+__type:__ object\
 __value:__ name, desc
 
-5. 1.1 name & desc
+        * name & desc\
 __type:__ string
+
+## Example
+
+```javascript
+cookify.init({
+    "view": {
+        "info": {
+            "header": "We use Cookies",
+            "text": 'We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience.',
+            "position": "bottom-left",
+            "button": {
+                "settings": {
+                    "text": "Manage",
+                    "background-color": "btn-secondary",
+                    "position" : "full",
+                },
+                "accept": {
+                    "text": "Accept all",
+                    "background-color": "btn-primary",
+                    "position" : "full",
+                },
+            },
+        },
+        "settings": {
+            "header": "Cookie Einstellungen",
+            "text": 'To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.',
+            "position": "bottom-left",
+            "button": {
+                "reject": {
+                    "text": "Manage",
+                    "background-color": "btn-secondary",
+                    "position" : "full",
+                },
+                "save": {
+                    "text": "Reject all",
+                    "background-color": "btn-primary",
+                    "position" : "full",
+                },
+            },
+        },
+    },
+    "cookies": {
+        "necessary": {
+            "name": "Necessary",
+        },
+        "analytics": {
+            "name": "Analytics",
+        },
+        "marketing": {
+            "name": "Marketing",
+        },
+    },
+});
+```
