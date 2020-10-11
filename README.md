@@ -65,15 +65,15 @@ __value:__ true, false
 
 ---
 
-4. view
-__type:__ object
+4. view\
+__type:__ object\
 __value:__ info, settings, button
 
-4. 1. info & settings
-__type:__ object
+    4.1. info & settings\
+__type:__ object\
 __value:__ header, text, position, button
 
-4. 1.1 header
+        4.1.1 header\
 __type:__ string
 
 4. 1.2 text
@@ -103,8 +103,8 @@ __type:__ string
 __for:__ class
 __preset:__ full
 
-4. 2. button
-__type:__ object
+4. 2. button\
+__type:__ object\
 __value:__ dimension, background-color, color, svg, text, font-size, line-height
 
 4. 2.1 dimension
