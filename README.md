@@ -20,7 +20,9 @@ Project is created with:
 Cookify can be installed by using npm install.\
 Otherwise you can download and import the package by yourself.
 
-`npm i cookify`
+```bash
+npm i cookify
+```
 
 ## Get Started
 ### Bootstrap
@@ -67,67 +69,67 @@ __value:__ true, false
 __type:__ object
 __value:__ info, settings, button
 
-4.1. info & settings
+4. 1. info & settings
 __type:__ object
 __value:__ header, text, position, button
 
-4.1.1 header
+4. 1.1 header
 __type:__ string
 
-4.1.2 text
+4. 1.2 text
 __type:__ string
 
-4.1.3 position
+4. 1.3 position
 __type:__ string
 __preset:__ top-full, bottom-full, bottom-left, middle
 
-4.1.4 button
+4. 1.4 button
 __type:__ object
 __value:__ settings, accept, reject, save
 
-4.1.4.1 settings, accept, reject & save
+4. 1.4.1 settings, accept, reject & save
 __type:__ object
 __value:__ text, background-color, position
 
-4.1.4.1.1 text
+4. 1.4.1.1 text
 __type:__ string
 
-4.1.4.1.1 background-color
+4. 1.4.1.1 background-color
 __type:__ string
 __for:__ class
 
-4.1.4.1.1 position
+4. 1.4.1.1 position
 __type:__ string
 __for:__ class
 __preset:__ full
 
-4.2. button
+4. 2. button
 __type:__ object
 __value:__ dimension, background-color, color, svg, text, font-size, line-height
 
-4.2.1 dimension
+4. 2.1 dimension
 __type:__ string
 __for:__ style -> width
 
-4.2.1 background-color
+4. 2.1 background-color
 __type:__ string
 __for:__ style -> background-color
 
-4.2.1 color
+4. 2.1 color
 __type:__ string
 __for:__ style -> color
 
-4.2.1 svg
+4. 2.1 svg
 __type:__ string
 
-4.2.1 text
+4. 2.1 text
 __type:__ string
 
-4.2.1 font-size
+4. 2.1 font-size
 __type:__ string
 __for:__ style -> font-size
 
-4.2.1 line-height
+4. 2.1 line-height
 __type:__ string
 __for:__ style -> line-height
 
@@ -137,9 +139,9 @@ __for:__ style -> line-height
 __type:__ object
 __value:__ necessary (default), {cookie-type}
 
-5.1 necessary & {cookie-type}
+5. 1 necessary & {cookie-type}
 __type:__ object
 __value:__ name, desc
 
-5.1.1 name & desc
+5. 1.1 name & desc
 __type:__ string
