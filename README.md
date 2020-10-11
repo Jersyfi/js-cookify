@@ -69,11 +69,11 @@ __value:__ true, false
 __type:__ object\
 __value:__ info, settings, button
 
-    4.1. info & settings\
+    4-1 info & settings\
 __type:__ object\
 __value:__ header, text, position, button
 
-        4.1.1 header\
+        4-1-1 header\
 __type:__ string
 
 4. 1.2 text
