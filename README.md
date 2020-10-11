@@ -127,11 +127,6 @@ __for:__ style -> font-size
 __type:__ string\
 __for:__ style -> line-height
 
-<<<<<<< HEAD
-=======
----
-
->>>>>>> 5b426ecb7105f8dd296187b708350c9fd12d8cb1
 5. cookies\
 __type:__ object\
 __value:__ necessary (default), {cookie-type}
