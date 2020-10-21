@@ -1,6 +1,6 @@
 {
   "name": "cookify",
-  "version": "1.0.0",
+  "version": "1.1.3",
   "description": "Simple fully customizable GDPR Cookie Consent Banner",
   "main": "cookify.js",
   "scripts": {
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/jersyfi/cookify/issues"
   },
-  "homepage": "https://github.com/jersyfi/cookify#readme"
+  "homepage": "https://github.com/jersyfi/cookify#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

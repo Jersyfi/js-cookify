@@ -1,4 +1,4 @@
-class Cookify {
+export class Cookify {
     constructor() {
         this.name = "cookify";
         this.expire = 365;
@@ -153,6 +153,8 @@ class Cookify {
                                                         break;
 
                                                     case "button":
+                                                        this.view["settings"]["button"] = new Object;
+
                                                         for (const buttonType in infoContent) {
                                                             if (infoContent.hasOwnProperty(buttonType)) {
                                                                 const buttonContent = infoContent[buttonType];
@@ -241,6 +243,8 @@ class Cookify {
                                                         break;
 
                                                     case "button":
+                                                        this.view["settings"]["button"] = new Object;
+
                                                         for (const buttonType in settingsContent) {
                                                             if (settingsContent.hasOwnProperty(buttonType)) {
                                                                 const buttonContent = settingsContent[buttonType];
@@ -607,12 +611,6 @@ class Cookify {
                 div5.appendChild(divCheckbox);
             }
         }
-        
-        labelCheckbox.appendChild(h5Checkbox);
-        labelCheckbox.appendChild(pCheckbox);
-        divCheckbox.appendChild(inputCheckbox);
-        divCheckbox.appendChild(labelCheckbox);
-        div5.appendChild(divCheckbox);
 
         div6.className = "modal-footer border-0 float-left";
         div7.className = "container-fluid px-0";
@@ -749,7 +747,7 @@ class Cookify {
 
         var expires = "expires=" + d.toUTCString();
 
-        document.cookie = this.name + "=" + btoa(JSON.stringify(cookieValue)) + ";" + expires + ";path=/";
+        document.cookie = this.name + "=" + btoa(JSON.stringify(cookieValue)) + ";" + expires + ";path=/" + ";SameSite=Lax" + ";Secure";
     }
 
     /**
@@ -938,5 +936,3 @@ class Cookify {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 }
-
-const cookify = new Cookify();
