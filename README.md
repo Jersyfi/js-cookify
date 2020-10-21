@@ -39,10 +39,20 @@ After that you need to paste the below code into the body of your html code.
 ```html
 <script src="cookify.js"></script>
 <script>
+    const cookify = new Cookify;
+    
     document.addEventListener("DOMContentLoaded", function(event) {
         cookify.init();
     });
 </script>
+```
+
+or
+
+```javscript
+const { Cookify } = require('cookify');
+
+window.top.cookify = new Cookify;
 ```
 
 ## Configuration
