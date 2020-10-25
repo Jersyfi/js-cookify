@@ -53,6 +53,8 @@ or
 const { Cookify } = require('cookify');
 
 window.top.cookify = new Cookify;
+
+cookify.init();
 ```
 
 ## Configuration
