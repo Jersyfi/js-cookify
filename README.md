@@ -6,6 +6,8 @@
 * [Setup](#setup)
 * [Get Started](#get-started)
 * [Configuration](#configuration)
+* [How to use](#how-to-use)
+* [Example](#example)
 
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
@@ -45,6 +47,8 @@ After that you need to paste the below code into the body of your html code.
         cookify.init();
     });
 </script>
+
+<script src="example.js" cookify="necessary"><script>
 ```
 
 or
@@ -149,6 +153,25 @@ __value:__ name, desc
 
         * name & desc\
 __type:__ string
+
+## How to use
+In order to use Cookify to toggle scripts on and off you need to modify your script tags like below.
+
+```html
+<script text="text/plain" src="example.js" cookify="necessary"><script>
+```
+
+In case you modifyed the name of Cookify inside the `cookify.init()` you need to apply this name also to your script tags.
+
+```javscript
+cookify.init({
+    'name': 'gdpr',
+});
+```
+
+```html
+<script text="text/plain" src="example.js" gdpr="necessary"><script>
+```
 
 ## Example
 
