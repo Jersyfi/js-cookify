@@ -47,8 +47,6 @@ After that you need to paste the below code into the body of your html code.
         cookify.init();
     });
 </script>
-
-<script src="example.js" cookify="necessary"><script>
 ```
 
 or
