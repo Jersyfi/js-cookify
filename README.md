@@ -2,18 +2,21 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Technologies](#technologies)
 * [Setup](#setup)
 * [Get Started](#get-started)
-* [Configuration](#configuration)
-* [How to use](#how-to-use)
+    * [Bootstrap](#bootstrap)
+    * [Cookify](#cookify)
+        * [Initialization](#initialization)
+        * [Configuration](#configuration)
+        * [How to use](#how-to-use)
 * [Example](#example)
+* [Change Log](#change-log)
 
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
-The Bootstrap Javascript Librarays are not necessary for this Project.
+Bootstrap Javascript Librarays are not necessary for this Project.\
+You have no restriction in customizing this Cookie Consent Banner.
 
-## Technologies
 Project is created with:
 * Bootstrap 4.5
 * JavaScript 1.8.5
@@ -36,20 +39,9 @@ For more Information about bootstrap visit the [Documentation](https://getbootst
 ```
 
 ### Cookify
-After that you need to paste the below code into the body of your html code.
 
-```html
-<script src="cookify.js"></script>
-<script>
-    const cookify = new Cookify;
-    
-    document.addEventListener("DOMContentLoaded", function(event) {
-        cookify.init();
-    });
-</script>
-```
-
-or
+#### Initialization
+The Cookify class is exported so you can import it by requiring it.
 
 ```javscript
 const { Cookify } = require('cookify');
@@ -59,9 +51,18 @@ window.top.cookify = new Cookify;
 cookify.init();
 ```
 
-## Configuration
-You can customize Cookify by passing JSON data in the `cookify.init()`.
-Following is described what data you can customize
+#### Configuration
+You can customize Cookify by passing JSON data in the initilization function.
+```javscript
+cookify.init({ ... })
+```
+It is also possible to pass the initialization data directly while constructing the Object.
+```javscript
+new Cookify({
+    'init': { ... }
+})
+```
+Following is described what data you can customize:
 
 1. name\
 __type:__ string
@@ -75,11 +76,11 @@ __value:__ true, false
 
 4. view\
 __type:__ object\
-__value:__ info, settings, button
+__value:__ info, manage, button
 
-    * info & settings\
+    * info & manage\
 __type:__ object\
-__value:__ header, text, position, button
+__value:__ header, text, button
 
         * header\
 __type:__ string
@@ -87,59 +88,22 @@ __type:__ string
         * text\
 __type:__ string
 
-        * position\
-__type:__ string\
-__preset:__ top-full, bottom-full, bottom-left, middle
-
         * button\
 __type:__ object\
 __value:__ settings, accept, reject, save
 
             *  settings, accept, reject & save\
-__type:__ object\
-__value:__ text, background-color, position
-
-                * text\
-__type:__ string
-
-                * background-color\
 __type:__ string\
-__for:__ class
-
-                * position\
-__type:__ string\
-__for:__ class\
-__preset:__ full
 
     * button\
 __type:__ object\
-__value:__ dimension, background-color, color, svg, text, font-size, line-height
-
-        * dimension\
-__type:__ string\
-__for:__ style -> width
-
-        * background-color\
-__type:__ string\
-__for:__ style -> background-color
-
-        * color\
-__type:__ string\
-__for:__ style -> color
+__value:__ svg, text
 
         * svg\
 __type:__ string
 
         * text\
 __type:__ string
-
-        * font-size\
-__type:__ string\
-__for:__ style -> font-size
-
-        * line-height\
-__type:__ string\
-__for:__ style -> line-height
 
 5. cookies\
 __type:__ object\
@@ -152,7 +116,7 @@ __value:__ name, desc
         * name & desc\
 __type:__ string
 
-## How to use
+#### How to use
 In order to use Cookify to toggle scripts on and off you need to modify your script tags like below.
 
 ```html
@@ -172,55 +136,97 @@ cookify.init({
 ```
 
 ## Example
+Easy to use example for customizing Cookify.
 
 ```javascript
-cookify.init({
-    "view": {
-        "info": {
-            "header": "We use Cookies",
-            "text": 'We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience.',
-            "position": "bottom-left",
-            "button": {
-                "settings": {
-                    "text": "Manage",
-                    "background-color": "btn-secondary",
-                    "position" : "full",
-                },
-                "accept": {
-                    "text": "Accept all",
-                    "background-color": "btn-primary",
-                    "position" : "full",
-                },
+cookify = new Cookify({
+    'init': {
+        'view': {
+            'info': {
+                'header': 'We use Cookies',
+                'text': 'We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience.',
+            },
+            'manage': {
+                'header': 'Manage Cookies',
+                'text': 'To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.',
+            },
+            'button': {
+                'svg': 'cookie',
             },
         },
-        "settings": {
-            "header": "Cookie Einstellungen",
-            "text": 'To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.',
-            "position": "bottom-left",
-            "button": {
-                "reject": {
-                    "text": "Manage",
-                    "background-color": "btn-secondary",
-                    "position" : "full",
-                },
-                "save": {
-                    "text": "Reject all",
-                    "background-color": "btn-primary",
-                    "position" : "full",
-                },
+        'cookies': {
+            'necessary': {
+                'name': 'Necessary',
+                'desc': 'Are necessary to run the website',
             },
-        },
-    },
-    "cookies": {
-        "necessary": {
-            "name": "Necessary",
-        },
-        "analytics": {
-            "name": "Analytics",
-        },
-        "marketing": {
-            "name": "Marketing",
+            'analytics': {
+                'name': 'Analytics',
+                'desc': 'To analyse the website traffic',
+            },
         },
     },
 });
 ```
+
+```stylesheet
+.cookify.modal {
+  width: 0;
+  height: 0;
+  overflow: unset;
+}
+
+.cookify .modal-dialog {
+  position: relative;
+  width: auto;
+  margin: .5rem;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  float: left !important;
+}
+
+.cookify .modal-content {
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  border-radius: 0 !important;
+  padding: 1rem !important;
+}
+
+.cookify .modal-header, .cookify .modal-footer {
+  border: 0 !important;
+}
+
+.cookify .modal-body {
+  padding-top: 0 !important;
+}
+
+@media (min-width: 576px) {
+  .cookify .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+    max-width: 300px;
+    margin: 1rem !important;
+  }
+}
+```
+
+## Change Log
+
+### v2.0.0
+
+* JSON data can be passed directly while constucting `new Cookify({ ... })`
+* Added Error Handling for the initialization
+* Minimized the initialization process
+* Dropped support for inline javascript styles and class names
+Own CSS need to be created
+* Added CSS example
+* Added option to choose between a cookie or a fingerprint for the cookie button
+
+### v1.1.3
+
+* Added javascript inline styles and class names
