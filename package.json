@@ -22,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/jersyfi/cookify/issues"
   },
-  "homepage": "https://github.com/jersyfi/cookify#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  "homepage": "https://github.com/jersyfi/cookify#readme"
 }
