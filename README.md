@@ -6,8 +6,8 @@
 * [Get Started](#get-started)
     * [Bootstrap](#bootstrap)
     * [Cookify](#cookify)
+        * [Run it](#run-it)
         * [Initialization](#initialization)
-        * [Configuration](#configuration)
         * [How to use](#how-to-use)
 * [Example](#example)
 * [Change Log](#change-log)
@@ -40,28 +40,54 @@ For more Information about bootstrap visit the [Documentation](https://getbootst
 
 ### Cookify
 
-#### Initialization
+#### Run it
 The Cookify class is exported so you can import it by requiring it.
 
 ```javscript
 const { Cookify } = require('cookify');
-
-window.top.cookify = new Cookify;
-
-cookify.init();
 ```
 
-#### Configuration
-You can customize Cookify by passing JSON data in the initilization function.
+You have two options to simply start with this project.
+
 ```javscript
-cookify.init({ ... })
+window.top.cookify = new Cookify({
+    'run': true,
+});
 ```
-It is also possible to pass the initialization data directly while constructing the Object.
+
 ```javscript
-new Cookify({
+window.top.cookify = new Cookify();
+cookify.run();
+```
+
+#### Initialization
+You can customize Cookify by passing JSON data in three different ways.
+First you can pass the data while constructing Cookify.
+Secound you can call the a merged `init({ ... })` function.
+Third you can access each component with its own `init...({ ... })` functions.
+
+```javscript
+window.top.cookify = new Cookify({
     'init': { ... }
-})
+});
 ```
+
+```javscript
+window.top.cookify = new Cookify();
+cookify.init({ ... });
+```
+
+```javscript
+window.top.cookify = new Cookify();
+cookify.initName(' ... ');          // string
+cookify.initExpire( ... );          // number
+cookify.initSupport( ... );         // boolean
+cookify.initViewInfo({ ... });      // object
+cookify.initViewManage({ ... });    // object
+cookify.initViewButton({ ... });    // object
+cookify.initCookies({ ... });       // object
+```
+
 Following is described what data you can customize:
 
 1. name\
@@ -101,6 +127,8 @@ __value:__ svg, text
 
         * svg\
 __type:__ string
+__preset:__ cookie, fingerprint
+__default:__ cookie
 
         * text\
 __type:__ string
@@ -126,9 +154,23 @@ In order to use Cookify to toggle scripts on and off you need to modify your scr
 In case you modifyed the name of Cookify inside the `cookify.init()` you need to apply this name also to your script tags.
 
 ```javscript
+window.top.cookify = new Cookify({
+    'init': {
+        'name': 'gdpr',
+    }
+});
+```
+
+```javscript
+window.top.cookify = new Cookify();
 cookify.init({
     'name': 'gdpr',
 });
+```
+
+```javscript
+window.top.cookify = new Cookify();
+cookify.name = 'gdpr';
 ```
 
 ```html
@@ -136,10 +178,10 @@ cookify.init({
 ```
 
 ## Example
-Easy to use example for customizing Cookify.
+Easy to use examples for customizing Cookify.
 
 ```javascript
-cookify = new Cookify({
+window.top.cookify = new Cookify({
     'init': {
         'view': {
             'info': {
@@ -165,7 +207,71 @@ cookify = new Cookify({
             },
         },
     },
+    'run': true,
 });
+```
+
+```javascript
+window.top.cookify = new Cookify();
+
+cookify.init({
+    'view': {
+        'info': {
+            'header': 'We use Cookies',
+            'text': 'We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience.',
+        },
+        'manage': {
+            'header': 'Manage Cookies',
+            'text': 'To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.',
+        },
+        'button': {
+            'svg': 'cookie',
+        },
+    },
+    'cookies': {
+        'necessary': {
+            'name': 'Necessary',
+            'desc': 'Are necessary to run the website',
+        },
+        'analytics': {
+            'name': 'Analytics',
+            'desc': 'To analyse the website traffic',
+        },
+    },
+});
+
+cookify.run();
+```
+
+```javascript
+window.top.cookify = new Cookify();
+
+cookify.initViewInfo({
+    'header': 'We use Cookies',
+    'text': 'We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience.',
+});
+
+cookify.initViewManage({
+    'header': 'Manage Cookies',
+    'text': 'To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.',
+});
+
+cookify.initViewButton({
+    'svg': 'cookie',
+});
+
+cookify.cookies({
+    'necessary': {
+        'name': 'Necessary',
+        'desc': 'Are necessary to run the website',
+    },
+    'analytics': {
+        'name': 'Analytics',
+        'desc': 'To analyse the website traffic',
+    },
+})
+
+cookify.run();
 ```
 
 ```stylesheet
@@ -216,6 +322,11 @@ cookify = new Cookify({
 ```
 
 ## Change Log
+
+### v2.1.0
+
+* More options to in itialize data for cookify
+* Extended examples
 
 ### v2.0.0
 

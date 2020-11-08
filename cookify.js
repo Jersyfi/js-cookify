@@ -39,9 +39,13 @@ export class Cookify {
     _viewed = 'viewed';
     _caValues = this._type.concat(this._viewed);
     
-    constructor(obj) {
+    constructor(obj = false) {
         if (Object.keys(obj).indexOf('init') != -1) {
             this.init(obj.init);
+        }
+
+        if (Object.keys(obj).indexOf('run') != -1 && obj.run === true) {
+            this.run();
         }
     }
 
@@ -100,15 +104,16 @@ export class Cookify {
                 
                 switch (type) {
                     case 'name':
-                        this._name = this.checkType('string', element, type);
+                        this.initName(element, type);
                         break;
 
                     case 'expire':
-                        this._expire = this.checkType('number', element, type);
+                        this.initExpire(element, type);
                         break;
 
                     case 'support':
-                        this._support = this.checkType('boolean', element, type);
+                        this.initExpire(element, type);
+                        break;
 
                     case 'view':
                         this.checkType('object', element, type);
@@ -118,113 +123,15 @@ export class Cookify {
                             
                             switch (viewType) {
                                 case 'info':
-                                    this.checkType('object', content, viewType);
-
-                                    for (const infoType in content) {
-                                        const infoContent = content[infoType];
-                                        
-                                        switch (infoType) {
-                                            case 'header':
-                                                this._view.info.header = infoContent;
-                                                break;
-
-                                            case 'text':
-                                                this._view.info.text = infoContent;
-                                                break;
-
-                                            case 'button':
-                                                this.checkType('object', infoContent, infoType);
-
-                                                this._view.info.button = new Object;
-
-                                                for (const buttonType in infoContent) {
-                                                    const buttonContent = infoContent[buttonType];
-                                                    
-                                                    if (['manage', 'accept', 'reject'].indexOf(buttonType) != -1) {
-                                                        this._view.info.button[buttonType] = this.checkType('string', buttonContent, buttonType);
-                                                    } else {
-                                                        throw 'Unknown Property Name -> \'' + buttonType + '\'\n`manage´, `accept´ or `reject´ is expected';
-                                                    }
-                                                }
-                                                break;
-                                        
-                                            default:
-                                                throw 'Unknown Property Name -> \'' + infoType + '\'';
-                                                break;
-                                        }
-                                    }
+                                    this.initViewInfo(content, viewType);
                                     break;
 
                                 case 'manage':
-                                    this.checkType('object', content, viewType);
-
-                                    for (const manageType in content) {
-                                        const manageContent = content[manageType];
-                                        
-                                        switch (manageType) {
-                                            case 'header':
-                                                this._view.manage.header = manageContent;
-                                                break;
-
-                                            case 'text':
-                                                this._view.manage.text = manageContent;
-                                                break;
-
-                                            case 'button':
-                                                this.checkType('object', manageContent, manageType);
-
-                                                this._view.manage.button = new Object;
-
-                                                for (const buttonType in manageContent) {
-                                                    const buttonContent = manageContent[buttonType];
-
-                                                    if (['accept', 'reject', 'save'].indexOf(buttonType) != -1) {
-                                                        this._view.manage.button[buttonType] = this.checkType('string', buttonContent, buttonType);
-                                                    } else {
-                                                        throw 'Unknown Property Name -> \'' + buttonType + '\'\n`accept´, `reject´ or `save´ is expected';
-                                                    }
-                                                }
-                                                break;
-                                        
-                                            default:
-                                                throw 'Unknown Property Name -> \'' + manageType + '\'';
-                                                break;
-                                        }
-                                    }
+                                    this.initViewManage(content, viewType);
                                     break;
 
                                 case 'button':
-                                    this.checkType('object', content, viewType);
-
-                                    for (const buttonType in content) {
-                                        const buttonContent = content[buttonType];
-                                        
-                                        switch (buttonType) {                
-                                            case 'svg':
-                                                switch (buttonContent) {
-                                                    case 'cookie':
-                                                        this._view.button.svg = this._svg.cookie;
-                                                        break;
-
-                                                    case 'fingerprint':
-                                                        this._view.button.svg = this._svg.fingerprint;
-                                                        break;
-                                                
-                                                    default:
-                                                        this._view.button.svg = this.checkType('string', buttonContent, buttonType);
-                                                        break;
-                                                }
-                                                break;
-        
-                                            case 'text':
-                                                this._view.button.text = this.checkType('string', buttonContent, buttonType);
-                                                break;
-                                        
-                                            default:
-                                                throw 'Unknown Property Name -> \'' + buttonType + '\'';
-                                                break;
-                                        }
-                                    }
+                                    this.initViewButton(content, viewType);
                                     break;
                             
                                 default:
@@ -235,40 +142,8 @@ export class Cookify {
                         break;
 
                     case 'cookies':
-                        this.checkType('object', element, type);
-
-                        for (const cookiesType in element) {
-                            const content = element[cookiesType];
-
-                            this._cookies[cookiesType] = new Object;
-                            this.checkType('object', content, cookiesType);
-
-                            for (const contentType in content) {
-                                const value = content[contentType];
-
-                                switch (contentType) {
-                                    case 'name':
-                                        this._cookies[cookiesType].name = this.checkType('string', value, contentType);
-                                        break;
-
-                                    case 'desc':
-                                        this._cookies[cookiesType].desc = this.checkType('string', value, contentType);
-                                        break;
-                                
-                                    default:
-                                        throw 'Unknown Property Name -> \'' + contentType + '\'';
-                                        break;
-                                }
-                            }
-                        }
-
-                        for (const cookiesType in this._cookies) {
-                            if (cookiesType != 'necessary') {
-                                this._type.push(cookiesType);
-                            }
-                        }
-
-                        this._caValues = this._type.concat(this._viewed);
+                        this.initCookies(element, type);
+                        
                         break;
 
                     default:
@@ -276,8 +151,261 @@ export class Cookify {
                         break;
                 }
             }
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
 
-            this.run();
+    /**
+     * initName()
+     * 
+     * For initializing cookify name with custom values
+     * 
+     * @param {any} string
+     * @param {any} type
+     */
+    initName(string, type = 'name') {
+        try {
+            this._name = this.checkType('string', string, type);
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
+
+    /**
+     * initExpire()
+     * 
+     * For initializing cookify expire with custom values
+     * 
+     * @param {any} obj
+     * @param {any} type
+     */
+    initExpire(string, type = 'expire') {
+        try {
+            this._expire = this.checkType('number', string, type);
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
+
+    /**
+     * initName()
+     * 
+     * For initializing cookify support with custom values
+     * 
+     * @param {any} obj
+     * @param {any} type
+     */
+    initSupport(string, type = 'support') {
+        try {
+            this._support = this.checkType('boolean', string, type);
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
+
+    /**
+     * initViewInfo()
+     * 
+     * For initializing cookify info with custom values
+     * 
+     * @param {any} obj
+     * @param {any} type
+     */
+    initViewInfo(obj, type = 'info') {
+        try {
+            if (obj === false) {
+                this._view.info = false;
+            } else {
+                this.checkType('object', obj, type);
+
+                for (const infoType in obj) {
+                    const infoContent = obj[infoType];
+                    
+                    switch (infoType) {
+                        case 'header':
+                            this._view.info.header = infoContent;
+                            break;
+        
+                        case 'text':
+                            this._view.info.text = infoContent;
+                            break;
+        
+                        case 'button':
+                            this.checkType('object', infoContent, infoType);
+        
+                            this._view.info.button = new Object;
+        
+                            for (const buttonType in infoContent) {
+                                const buttonContent = infoContent[buttonType];
+                                
+                                if (['manage', 'accept', 'reject'].indexOf(buttonType) != -1) {
+                                    this._view.info.button[buttonType] = this.checkType('string', buttonContent, buttonType);
+                                } else {
+                                    throw 'Unknown Property Name -> \'' + buttonType + '\'\n`manage´, `accept´ or `reject´ is expected';
+                                }
+                            }
+                            break;
+                    
+                        default:
+                            throw 'Unknown Property Name -> \'' + infoType + '\'';
+                            break;
+                    }
+                }
+            }
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
+
+    /**
+     * initViewManage()
+     * 
+     * For initializing cookify manage with custom values
+     * 
+     * @param {any} obj
+     * @param {any} type
+     */
+    initViewManage(obj, type = 'manage') {
+        try {
+            if (obj === false) {
+                this._view.manage = false;
+            } else {
+                this.checkType('object', obj, type);
+
+                for (const manageType in obj) {
+                    const manageContent = obj[manageType];
+                    
+                    switch (manageType) {
+                        case 'header':
+                            this._view.manage.header = manageContent;
+                            break;
+        
+                        case 'text':
+                            this._view.manage.text = manageContent;
+                            break;
+        
+                        case 'button':
+                            this.checkType('object', manageContent, manageType);
+        
+                            this._view.manage.button = new Object;
+        
+                            for (const buttonType in manageContent) {
+                                const buttonContent = manageContent[buttonType];
+        
+                                if (['accept', 'reject', 'save'].indexOf(buttonType) != -1) {
+                                    this._view.manage.button[buttonType] = this.checkType('string', buttonContent, buttonType);
+                                } else {
+                                    throw 'Unknown Property Name -> \'' + buttonType + '\'\n`accept´, `reject´ or `save´ is expected';
+                                }
+                            }
+                            break;
+                    
+                        default:
+                            throw 'Unknown Property Name -> \'' + manageType + '\'';
+                            break;
+                    }
+                }
+            }
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
+
+    /**
+     * initViewButton()
+     * 
+     * For initializing cookify button with custom values
+     * 
+     * @param {any} obj
+     * @param {any} type
+     */
+    initViewButton(obj, type = 'button') {
+        try {
+            if (obj === false) {
+                this._view.button = false;
+            } else {
+                this.checkType('object', obj, type);
+
+                for (const buttonType in obj) {
+                    const buttonContent = obj[buttonType];
+                    
+                    switch (buttonType) {                
+                        case 'svg':
+                            switch (buttonContent) {
+                                case 'cookie':
+                                    this._view.button.svg = this._svg.cookie;
+                                    break;
+        
+                                case 'fingerprint':
+                                    this._view.button.svg = this._svg.fingerprint;
+                                    break;
+                            
+                                default:
+                                    this._view.button.svg = this.checkType('string', buttonContent, buttonType);
+                                    break;
+                            }
+                            break;
+        
+                        case 'text':
+                            this._view.button.text = this.checkType('string', buttonContent, buttonType);
+                            break;
+                    
+                        default:
+                            throw 'Unknown Property Name -> \'' + buttonType + '\'';
+                            break;
+                    }
+                }
+            }
+        } catch (error) {
+            console.log('An Error occured in your initialization\n' + error);
+        }
+    }
+
+    /**
+     * initCookies()
+     * 
+     * For initializing cookify button with custom values
+     * 
+     * @param {any} obj
+     * @param {any} type
+     */
+    initCookies(obj, type = 'cookies') {
+        try {
+            this.checkType('object', obj, type);
+
+            for (const cookiesType in obj) {
+                const content = obj[cookiesType];
+
+                this._cookies[cookiesType] = new Object;
+                this.checkType('object', content, cookiesType);
+
+                for (const contentType in content) {
+                    const value = content[contentType];
+
+                    switch (contentType) {
+                        case 'name':
+                            this._cookies[cookiesType].name = this.checkType('string', value, contentType);
+                            break;
+
+                        case 'desc':
+                            this._cookies[cookiesType].desc = this.checkType('string', value, contentType);
+                            break;
+                    
+                        default:
+                            throw 'Unknown Property Name -> \'' + contentType + '\'';
+                            break;
+                    }
+                }
+            }
+
+            for (const cookiesType in this._cookies) {
+                if (cookiesType != 'necessary') {
+                    this._type.push(cookiesType);
+                }
+            }
+
+            this._caValues = this._type.concat(this._viewed);
         } catch (error) {
             console.log('An Error occured in your initialization\n' + error);
         }
@@ -336,6 +464,10 @@ export class Cookify {
      * create the cookie button
      */
     htmlButton() {
+        if (this._view.button === false) {
+            return false;
+        }
+
         var button = document.createElement("button"),
         div1 = document.createElement("div"),
         div2 = document.createElement("div"),
@@ -379,6 +511,10 @@ export class Cookify {
      * create the cookie modal info
      */
     htmlModalInfo() {
+        if (this._view.info === false) {
+            return false;
+        }
+
         var div1 = document.createElement("div"),
         div2 = document.createElement("div"),
         div3 = document.createElement("div"),
@@ -447,6 +583,10 @@ export class Cookify {
      * create the cookie modal manage
      */
     htmlModalManage() {
+        if (this._view.manage === false) {
+            return false;
+        }
+
         var div1 = document.createElement("div"),
         div2 = document.createElement("div"),
         div3 = document.createElement("div"),
@@ -575,20 +715,24 @@ export class Cookify {
      */
     htmlEvents() {
         // Open Modal
-        document.getElementById("cookieButton").addEventListener("click", function() {
-            cookify.modalChange("cookieModalManage", "show");
-        });
+        if (document.getElementById("cookieButton")) {
+            document.getElementById("cookieButton").addEventListener("click", function() {
+                cookify.modalChange("cookieModalManage", "show");
+            });
+        }
 
         // Checkboxes
         if (this.getOnlyNecassary() === false) {
             this._type.forEach(element => {
-                document.getElementById("cookieCheck" + this.ucfirst(element)).addEventListener("click", function() {
-                    if (cookify.getCookieState(element)) {
-                        cookify.changeCookieState(element, "false");
-                    } else {
-                        cookify.changeCookieState(element, "true");
-                    }
-                });          
+                if (document.getElementById("cookieCheck" + this.ucfirst(element))) {
+                    document.getElementById("cookieCheck" + this.ucfirst(element)).addEventListener("click", function() {
+                        if (cookify.getCookieState(element)) {
+                            cookify.changeCookieState(element, "false");
+                        } else {
+                            cookify.changeCookieState(element, "true");
+                        }
+                    });  
+                }
             });
         }
 
