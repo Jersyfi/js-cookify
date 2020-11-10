@@ -1,3 +1,5 @@
+<p align="center"><img src="/img/socialcard.png" alt="Social Card of Cookify"></p>
+
 # Cookify
 
 ## Table of contents
@@ -20,8 +22,8 @@ You have no restriction in customizing this Cookie Consent Banner.
 Cookify also has great looking button images.
 
 <ins>
-   <img width="35" height="35" src="https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/cookie.svg" alt="Cookie">
-   <img width="35" height="35" src="https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/fingerprint.svg" alt="Cookie">
+   <img width="35" height="35" src="/img/cookie.svg" alt="Cookie">
+   <img width="35" height="35" src="/img/fingerprint.svg" alt="Cookie">
 </ins>
 
 Project is created with:
