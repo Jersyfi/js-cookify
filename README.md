@@ -12,7 +12,7 @@
         * [Initialization](#initialization)
         * [How to use](#how-to-use)
 * [Example](#example)
-* [Change Log](#change-log)
+* [Changelog](#changelog)
 
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
@@ -414,23 +414,6 @@ cookify.run();
 }
 ```
 
-## Change Log
+## Changelog
 
-### v2.1.0
-
-* More options to in itialize data for cookify
-* Extended examples
-
-### v2.0.0
-
-* JSON data can be passed directly while constucting `new Cookify({ ... })`
-* Added Error Handling for the initialization
-* Minimized the initialization process
-* Dropped support for inline javascript styles and class names
-Own CSS need to be created
-* Added CSS example
-* Added option to choose between a cookie or a fingerprint for the cookie button
-
-### v1.1.3
-
-* Added javascript inline styles and class names
+See the [Changelog](CHANGELOG.md) for more information on what has changed.
