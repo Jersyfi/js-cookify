@@ -130,6 +130,8 @@ __type:__ string
 __preset:__ cookie, fingerprint
 __default:__ cookie
 
+![](https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/cookie.svg) ![](https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/fingerprint.svg)
+
         * text\
 __type:__ string
 
