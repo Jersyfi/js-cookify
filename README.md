@@ -17,6 +17,13 @@ This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap 
 Bootstrap Javascript Librarays are not necessary for this Project.\
 You have no restriction in customizing this Cookie Consent Banner.
 
+Cookify also has great looking button images.
+
+<ins>
+   <img width="35" height="35" src="https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/cookie.svg" alt="Cookie">
+   <img width="35" height="35" src="https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/fingerprint.svg" alt="Cookie">
+</ins>
+
 Project is created with:
 * Bootstrap 4.5
 * JavaScript 1.8.5
@@ -88,7 +95,91 @@ cookify.initViewButton({ ... });    // object
 cookify.initCookies({ ... });       // object
 ```
 
-Following is described what data you can customize:
+Following the object data structure is described what you can customize.
+
+<table>
+   <thead>
+      <tr>
+         <th scope="col">Name</th>
+         <th scope="col" colspan="3">Structure</th>
+         <th scope="col">Type</th>
+         <th scope="col">Value</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td scope="row">name</td>
+         <td colspan="3"></td>
+         <td>string</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td scope="row">expire</td>
+         <td colspan="3"></td>
+         <td>integer</td>
+         <td>(in days)</td>
+      </tr>
+      <tr>
+         <td scope="row" rowspan="2">support</td>
+         <td colspan="3" rowspan="2"></td>
+         <td rowspan="2">boolean</td>
+         <td>true</td>
+      </tr>
+      <tr>
+         <td>false</td>
+      </tr>
+      <tr>
+         <td scope="row" rowspan="8">view</td>
+         <td rowspan="6">info, manage</td>
+         <td colspan="2">header</td>
+         <td>string</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td colspan="2">text</td>
+         <td>html</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td rowspan="4">button</td>
+         <td>manage</td>
+         <td rowspan="4">string</td>
+         <td rowspan="4">(button name)</td>
+      </tr>
+      <tr>
+         <td>accept</td>
+      </tr>
+      <tr>
+         <td>save</td>
+      </tr>
+      <tr>
+         <td>reject</td>
+      </tr>
+      <tr>
+         <td rowspan="2">button</td>
+         <td colspan="2">svg</td>
+         <td>html</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td colspan="2">text</td>
+         <td>string</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td scope="row" rowspan="2">cookies</td>
+         <td rowspan="2">necessary (default), {cookie-type}</td>
+         <td colspan="2">name</td>
+         <td>string</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td colspan="2">desc</td>
+         <td>string</td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
 1. name\
 __type:__ string
@@ -129,8 +220,6 @@ __value:__ svg, text
 __type:__ string
 __preset:__ cookie, fingerprint
 __default:__ cookie
-
-![](https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/cookie.svg) ![](https://raw.githubusercontent.com/Jersyfi/Cookify/4d7acadb860f5148f76adace654d97a4d53b8216/img/fingerprint.svg)
 
         * text\
 __type:__ string
