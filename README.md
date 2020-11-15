@@ -24,4 +24,4 @@ Project is created with:
 
 ## Documentation
 More Information about Cookify can be found in the documenation.
-To view the documentation click [here](/wiki).
+To view the documentation click [here](../wiki).
