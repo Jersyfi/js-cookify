@@ -23,5 +23,5 @@ Project is created with:
 * JavaScript 1.8.5
 
 ## Documentation
-More Information about Cookify can be found in the documenation.
+More Information about Cookify can be found in the documenation.\
 To view the documentation click [here](../../wiki).
