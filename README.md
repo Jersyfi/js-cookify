@@ -1,10 +1,14 @@
 <p align="center"><img src="/img/socialcard.png" alt="Social Card of Cookify"></p>
 
+![NPM Downloads](https://img.shields.io/npm/dt/cookify)
+![NPM](https://img.shields.io/npm/v/cookify)
+![Github Code Size](https://img.shields.io/github/languages/code-size/jersyfi/cookify)
+![GitHub License](https://img.shields.io/github/license/jersyfi/cookify)
+
 # Cookify
 
-## Table of contents
-* [General info](#general-info)
-* [Documentation](#documentation)
+## Documentation
+To view the documentation you need to look on the wiki page [here](../wiki).
 
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
