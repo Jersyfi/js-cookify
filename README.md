@@ -7,9 +7,6 @@
 
 # Cookify
 
-## Documentation
-To view the documentation you need to look on the wiki page [here](../wiki).
-
 ## General info
 This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
 Bootstrap Javascript Librarays are not necessary for this Project.\
@@ -29,3 +26,16 @@ Project is created with:
 ## Documentation
 More Information about Cookify can be found in the documenation.\
 To view the documentation click [here](../../wiki).
+
+## Changelog
+
+Please see [CHANGELOG](../../wiki/changelog) for more information what has changed recently.
+
+## Credits
+
+- [Jérôme Bastian Winkel](https://github.com/jersyfi)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
