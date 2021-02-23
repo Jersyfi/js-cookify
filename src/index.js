@@ -60,6 +60,10 @@
       return '[data-c-check="${element}"]'
     },
     
+    getDataScript: function (element = '') {
+      return '[data-c-script="${element}"]'
+    },
+    
     getView: {
       button: 'button',
       info: 'info',
@@ -247,6 +251,15 @@
               }
           }
       }
+    },
+    
+    /**
+     * addClickListener
+     * 
+     * For adding a event listner to a dom element
+     */
+    addClickListener: function (DOMElement, callback) {
+      DOMElement.addEventListener('click', callback);
     }
   };
 
