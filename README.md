@@ -17,7 +17,7 @@ This is a simple full customizable cookie consent banner for gdpr law. This libr
 (Working on)
 
 ## Changelog
-Please see [CHANGELOG](../../changelog) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Credits
 - [Jérôme Bastian Winkel](https://github.com/jersyfi)
