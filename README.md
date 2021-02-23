@@ -8,34 +8,20 @@
 # Cookify
 
 ## General info
-This project is a simple designed GDPR Cookie Consent Banner with the Bootstrap Library.\
-Bootstrap Javascript Librarays are not necessary for this Project.\
-You have no restriction in customizing this Cookie Consent Banner.
+This is a simple full customizable cookie consent banner for gdpr law. This library is build on pure javascript for easy customization. You can choose your own CSS Framework, your own styles and only need to define query selectors.
 
-Cookify also has great looking button images.
-
-<ins>
-   <img width="35" height="35" src="/img/cookie.svg" alt="Cookie">
-   <img width="35" height="35" src="/img/fingerprint.svg" alt="Cookie">
-</ins>
-
-Project is created with:
-* Bootstrap 4.5
+### Project is created with
 * JavaScript 1.8.5
 
 ## Documentation
-More Information about Cookify can be found in the documenation.\
-To view the documentation click [here](../../wiki).
+(Working on)
 
 ## Changelog
-
-Please see [CHANGELOG](../../wiki/changelog) for more information what has changed recently.
+Please see [CHANGELOG](../../changelog) for more information what has changed recently.
 
 ## Credits
-
 - [Jérôme Bastian Winkel](https://github.com/jersyfi)
 - [All Contributors](../../contributors)
 
 ## License
-
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
