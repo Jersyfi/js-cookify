@@ -941,10 +941,14 @@ export class Cookify {
                     if (element.getAttribute(this._name) == cookieType) {
                         if (element.hasAttribute("type")) {
                             if (type == "js") {
-                                element.setAttribute("type", "text/javascript");
-                                var attr = element.getAttribute("src");
-                                element.removeAttribute("src");
-                                element.setAttribute("src", attr);
+                                var tmp = document.createElement('script');
+                                for (var j = 0; j< element.attributes.length; j++) {
+                                    tmp.setAttribute(element.attributes[j].name, element.attributes[j].value);
+                                }
+                                var parent = element.parentNode;
+                                element.remove();
+                                tmp.setAttribute("type", "text/javascript");
+                                parent.appendChild(tmp)
                             } else {
                                 element.setAttribute("type", "text/plain");
                             }
