@@ -112,7 +112,7 @@ export class Cookify {
                         break;
 
                     case 'support':
-                        this.initExpire(element, type);
+                        this.initSupport(element, type);
                         break;
 
                     case 'view':
@@ -811,7 +811,7 @@ export class Cookify {
 
         var expires = "expires=" + d.toUTCString();
 
-        document.cookie = this._name + "=" + btoa(JSON.stringify(cookieValue)) + ";" + expires + ";path=/" + ";SameSite=Lax";
+        document.cookie = this._name + "=" + btoa(JSON.stringify(cookieValue)) + ";" + expires + ";path=/";
     }
 
     /**
@@ -942,9 +942,11 @@ export class Cookify {
                         if (element.hasAttribute("type")) {
                             if (type == "js") {
                                 element.setAttribute("type", "text/javascript");
-                                var attr = element.getAttribute("src");
-                                element.removeAttribute("src");
-                                element.setAttribute("src", attr);
+                                if (element.hasAttribute("src")) {
+                                    element.setAttribute("src", element.getAttribute("src"));
+                                } else {
+                                    element.innerHTML = element.innerHTML;
+                                }
                             } else {
                                 element.setAttribute("type", "text/plain");
                             }
