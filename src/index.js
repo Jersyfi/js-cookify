@@ -1,9 +1,12 @@
 export default class Cookify {
-    constructor(cookieDefault) {
+    constructor(saveByDefault = false, saveWithChange = false, cookieDefault = 'necessary') {
         this.dataName = 'cookify'
+        this.data = new Object
         this.query = 'data-c-'
-        this.cookieDefault = cookieDefault ?? 'necessary'
-        this.stateViewed = 'viewed'
+        this.saveByDefault = saveByDefault
+        this.saveWithChange = saveWithChange
+        this.cookieDefault = cookieDefault
+        this.viewedName = 'viewed'
 
         this.init()
     }
@@ -20,21 +23,21 @@ export default class Cookify {
      * Check the data for integrity
      */
     initData() {
-        if (!this.getData()) {
-            var typeElements = document.querySelectorAll(this.getQueryDataBrackets('check')),
-                data = new Object
-
+        if (!this.getMemoryData()) {
+            var typeElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check'))
+            
             for (const typeElement of typeElements) {
-                if (typeElement.getAttribute(this.getQueryData('check')) == this.cookieDefault) {
-                    data[typeElement.getAttribute(this.getQueryData('check'))] = true
+                if (typeElement.getAttribute(this.getQueryData('check')) == this.cookieDefault || typeElement.getAttribute(this.getQueryData('check-default')) == 'true') {
+                    this.data[typeElement.getAttribute(this.getQueryData('check'))] = true
                 } else {
-                    data[typeElement.getAttribute(this.getQueryData('check'))] = false
+                    this.data[typeElement.getAttribute(this.getQueryData('check'))] = false
                 }
-                
             }
 
-            data[this.stateViewed] = false
-            this.setData(data)
+            this.data[this.viewedName] = false
+            this.saveByDefault ? this.setMemoryData(this.data) : null
+        } else {
+            this.data = this.getMemoryData()
         }
     }
 
@@ -47,7 +50,7 @@ export default class Cookify {
         for (const typeElement of typeElements) {
             var type = typeElement.getAttribute(this.getQueryData('check'))
 
-            if (this.getCookieState(type)) {
+            if (this.getDataState(type)) {
                 var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type))
 
                 for (const checkboxElement of checkboxElements) {
@@ -63,10 +66,33 @@ export default class Cookify {
      * Initialize the Listeners
      */
     initListeners() {
-        var typeElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check'))
+        // Checkboxes
+        var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check'))
 
-        for (const typeElement of typeElements) {
-            typeElement.addEventListener('click', this.onMouseClick)
+        for (const checkboxElement of checkboxElements) {
+            checkboxElement.addEventListener('click', this.onCheckboxClick)
+        }
+
+        // Actions
+        var actionElements = document.querySelectorAll(this.getQueryDataBrackets('action'))
+
+        for (const actionElement of actionElements) {
+            switch (actionElement.getAttribute(this.getQueryData('action'))) {
+                case 'accept':
+                    actionElement.addEventListener('click', this.onActionAcceptClick)
+                    break;
+
+                case 'necessary':
+                    actionElement.addEventListener('click', this.onActionNecessaryClick)
+                    break;
+
+                case 'all':
+                    actionElement.addEventListener('click', this.onActionAllClick)
+                    break;
+            
+                default:
+                    break;
+            }
         }
     }
 
@@ -97,7 +123,7 @@ export default class Cookify {
      * 
      * @returns data
      */
-    getData() {
+    getMemoryData() {
         // Get from Cookies
         var name = this.dataName + '=',
             ca = document.cookie.split(';')
@@ -121,7 +147,7 @@ export default class Cookify {
      * 
      * @param data
      */
-    setData(data) {
+    setMemoryData(data) {
         // Verschlüsselung
         data = btoa(JSON.stringify(data))
 
@@ -140,12 +166,10 @@ export default class Cookify {
      * 
      * @param {string} type 
      */
-    getCookieState(type) {
-        var data = this.getData()
-
-        for (const key in data) {
+    getDataState(type) {
+        for (const key in this.data) {
             if (key == type) {
-                return data[key] === true
+                return this.data[key] === true
             }
         }
 
@@ -158,16 +182,14 @@ export default class Cookify {
      * @param {string} type 
      * @param {boolean} value 
      */
-    changeCookieState(type, value) {
-        var data = this.getData()
-
-        for (const key in data) {
+    changeDataState(type, value) {
+        for (const key in this.data) {
             if (key == type) {
-                data[key] = value
+                this.data[key] = value
             }
         }
 
-        this.setData(data)
+        this.saveWithChange ? this.setMemoryData(this.data) : null
 
         // Call Event to let the user track activity
     }
@@ -208,16 +230,61 @@ export default class Cookify {
      * 
      * @param {event} e 
      */
-    onMouseClick = e => {
+    onCheckboxClick = e => {
         var type = e.target.getAttribute(this.getQueryData('check')),
             checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type)),
-            cookieState = this.getCookieState(type)
+            cookieState = this.getDataState(type)
 
-        cookieState ? this.changeScriptType(type, 'plain') : this.changeScriptType(type, 'js')
-        this.changeCookieState(type, !cookieState)
+        cookieState && this.saveWithChange ? this.changeScriptType(type, 'plain') : this.changeScriptType(type, 'js')
+        this.changeDataState(type, !cookieState)
 
         for (const checkboxElement of checkboxElements) {
             cookieState ? checkboxElement.checked = false : checkboxElement.checked = 'checked'
         }
+    }
+
+    /**
+     * Event on action accept click
+     */
+    onActionAcceptClick = () => {
+        for (const type in this.data) {
+            if (type != this.viewedName) {
+                this.data[type] ? this.changeScriptType(type, 'js') : this.changeScriptType(type, 'plain')
+            }
+        }
+        
+        this.data[this.viewedName] = true
+        this.setMemoryData(this.data)
+    }
+
+    /**
+     * Event action accept only necessary click
+     */
+    onActionNecessaryClick = () => {
+        // Nur notwendig auf true
+        for (const type in this.data) {
+            if (type != this.cookieDefault && type != this.viewedName) {
+                this.data[type] = false
+                this.changeScriptType(type, 'plain')
+            }
+        }
+
+        this.data[this.viewedName] = true
+        this.setMemoryData(this.data)
+    }
+
+    /**
+     * Event action accept all cick
+     */
+    onActionAllClick = () => {
+        for (const type in this.data) {
+            this.data[type] = true
+
+            if (type != this.viewedName) {
+                this.changeScriptType(type, 'js')
+            }
+        }
+
+        this.setMemoryData(this.data)
     }
 }
