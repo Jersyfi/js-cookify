@@ -1,267 +1,223 @@
-(function (root, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Cookify = factory());
-}(this, function () {
-  'use strict';
+export default class Cookify {
+    constructor(cookieDefault) {
+        this.dataName = 'cookify'
+        this.query = 'data-c-'
+        this.cookieDefault = cookieDefault ?? 'necessary'
+        this.stateViewed = 'viewed'
 
-  var Cookify,
-    document = window.document;
-
-  Cookify = function (loader, undefined) {
-    if (!(this instanceof Cookify)) {
-      return new Cookify(loader);
+        this.init()
     }
 
-    this.useName = loader.name || 'cookify';
-    this.useExpire = loader.expire || '365';
-    this.init();
-  };
+    init() {
+        this.initData()
 
-  Cookify.prototype = {
+        this.initCheckboxes()
+
+        this.initListeners()
+    }
+
     /**
-     * init()
-     * 
-     * For initializing cookify
-     * 
-     * @param {any} obj
+     * Check the data for integrity
      */
-    init: function () {
-      var types = document.querySelectorAll(this.getDataView);
-      
-      for (const type in types) {
-        this.type.push(type);
-      }
-      
-      this.caValues = this.type.concat(this.getViewed)
-      this.checkCookie();
-      
-      if (this.getCookieState(this.getViewed)) {
-          if (!this.getOnlyNecassary()) {
-              this.type.forEach(element => {
-                  if (this.getCookieState(element)) {
-                      this.changeScriptType(element, 'js');
-                      document.querySelector(this.getDataCheckbox(element)).checked = 'checked';
-                  }
-              });
-          }
-      } else {
-        document.querySelector(this.getDataView(this.getView.info)).style.display = 'block';
-      }
-      
-      // Initilization of all components
-    },
-    
-    getDataView: function (element = '') {
-      return '[data-c-view="${element}"]'
-    },
-    
-    getDataCheckbox: function (element = '') {
-      return '[data-c-check="${element}"]'
-    },
-    
-    getDataScript: function (element = '') {
-      return '[data-c-script="${element}"]'
-    },
-    
-    getView: {
-      button: 'button',
-      info: 'info',
-      manage: 'manage'
-    },
-    
-    getViewed: 'viewed',
-    
-    useType: '',
-    
+    initData() {
+        if (!this.getData()) {
+            var typeElements = document.querySelectorAll(this.getQueryDataBrackets('check')),
+                data = new Object
+
+            for (const typeElement of typeElements) {
+                if (typeElement.getAttribute(this.getQueryData('check')) == this.cookieDefault) {
+                    data[typeElement.getAttribute(this.getQueryData('check'))] = true
+                } else {
+                    data[typeElement.getAttribute(this.getQueryData('check'))] = false
+                }
+                
+            }
+
+            data[this.stateViewed] = false
+            this.setData(data)
+        }
+    }
+
     /**
-     * getOnlyNecassary()
-     * 
-     * return if only necessary is selected
-     * 
-     * @return {boolean}
+     * Initialize the checkboxes
      */
-    getOnlyNecessary: function () {
-      var size = 0;
+    initCheckboxes() {
+        var typeElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check'))
 
-      for (const key in this._cookies) {
-          if (this._cookies.hasOwnProperty(key)) {
-              size++;
-          }
-      }
+        for (const typeElement of typeElements) {
+            var type = typeElement.getAttribute(this.getQueryData('check'))
 
-      if (size > 1) {
-          return false;
-      }
+            if (this.getCookieState(type)) {
+                var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type))
 
-      return true;
-    },
-    
+                for (const checkboxElement of checkboxElements) {
+                    checkboxElement.checked = 'checked'
+                }
+
+                this.changeScriptType(type, 'js')
+            }
+        }
+    }
+
     /**
-     * setCookie()
-     * 
-     * cookies can be set here
-     * 
-     * @param {any} cookieValue
+     * Initialize the Listeners
      */
-    setCookie: function (ca) {
-      var d = new Date(),
-          expires = '';
-      
-      d.setTime(d.getTime() + (this._expire * 24 * 60 * 60 * 1000));
-      expires = 'expires=' + d.toUTCString();
-      document.cookie = this.useName + '=' + btoa(JSON.stringify(ca)) + ';' + expires + ';path=/';
-    },
-    
+    initListeners() {
+        var typeElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check'))
+
+        for (const typeElement of typeElements) {
+            typeElement.addEventListener('click', this.onMouseClick)
+        }
+    }
+
     /**
-     * getCookie()
+     * Get the query name for selecting elements
      * 
-     * cookies can be get here
-     * 
-     * @param {any} cookieName 
+     * @param {string} type 
+     * @param {string} element 
+     * @returns {string}
      */
-    getCookie: function () {
-      var name = this.useName + '=',
-          ca = document.cookie.split(';');
+    getQueryData(type, element = '') {
+        return element == '' ? `${this.query}${type}` : `${this.query}${type}="${element}"`
+    }
 
-      for(var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-              c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-              return JSON.parse(atob(c.substring(name.length, c.length)));
-          }
-      }
-      return false;
-    },
-    
     /**
-     * createCookie()
+     * Get the query name with brackets for selecting elements
      * 
-     * create the cookie for cookify
+     * @param {string} type 
+     * @param {string} element 
+     * @returns {string}
      */
-    createCookie: function () {
-      var ca = {};
+    getQueryDataBrackets(type, element = '') {
+        return '[' + this.getQueryData(type, element) + ']'
+    }
 
-      this._caValues.forEach(value => {
-          ca[value] = false;
-      });
-
-      this.setCookie(ca);
-    },
-    
     /**
-     * checkCookie()
+     * Read the saved data
      * 
-     * For checking if the cookie is set correct
+     * @returns data
      */
-    checkCookie: function () {
-      var cookie = this.getCookie();
+    getData() {
+        // Get from Cookies
+        var name = this.dataName + '=',
+            ca = document.cookie.split(';')
 
-      if (cookie != '' && typeof cookie == 'object') {
-          this._caValues.forEach(value => {
-              if (Object.keys(cookie).indexOf(value) == -1) {
-                  this.createCookie();
-              }
-          });
-      } else {
-          this.createCookie();
-      }
-    },
-    
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i]
+
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return JSON.parse(atob(c.substring(name.length, c.length)))
+            }
+        }
+
+        return false
+    }
+
     /**
-     * changeCookieState()
+     * Set the data
      * 
-     * A cookie state can be changed to false or true
-     * 
-     * @param {any} type 
-     * @param {["true", "false"]} value
+     * @param data
      */
-    changeCookieState: function () {
-      var ca = this.getCookie();
+    setData(data) {
+        // Verschlüsselung
+        data = btoa(JSON.stringify(data))
 
-      for (const key in ca) {
-          if (ca.hasOwnProperty(key)) {
-              if (key == type) {
-                  if (value == 'true') {
-                      ca[key] = true;
-                  } else {
-                      ca[key] = false;
-                  }
-              }
-          }
-      }
+        // Save in cookies
+        var date = new Date(),
+            expire = 365,
+            expires = ''
 
-      this.setCookie(ca);
-    },
-    
+        date.setTime(date.getTime() + (expire * 24 * 60 * 60 * 1000))
+        expires = 'expires=' + date.toUTCString()
+        document.cookie = this.dataName + '=' + data + ';' + expires + ';path=/;secure'
+    }
+
     /**
-     * getCookieState()
+     * Get a cookie state
      * 
-     * read a cookie state
-     * 
-     * @param {any} type 
+     * @param {string} type 
      */
-    getCookieState: function () {
-      var ca = this.getCookie();
+    getCookieState(type) {
+        var data = this.getData()
 
-      for (const key in ca) {
-          if (ca.hasOwnProperty(key)) {
-              if (key == type) {
-                  if (ca[key] === true) {
-                      return true;
-                  } else {
-                      return false;
-                  }
-              }
-          }
-      }
-    },
-    
+        for (const key in data) {
+            if (key == type) {
+                return data[key] === true
+            }
+        }
+
+        return false
+    }
+
     /**
-     * changeScriptType()
+     * Changes the cookie state and saves the data
      * 
+     * @param {string} type 
+     * @param {boolean} value 
+     */
+    changeCookieState(type, value) {
+        var data = this.getData()
+
+        for (const key in data) {
+            if (key == type) {
+                data[key] = value
+            }
+        }
+
+        this.setData(data)
+
+        // Call Event to let the user track activity
+    }
+
+    /**
      * Any Script type can be changed from text/plain
      * and text/javascript and back
      * 
-     * @param {any} cookieType
-     * @param {["js", "plain"]} type
+     * @param {string} script 
+     * @param {string} type 
      */
-    changeScriptType: function () {
-      var elements = document.getElementsByTagName("script");
+    changeScriptType(script, type) {
+        var scriptElements = document.querySelectorAll('script' + this.getQueryDataBrackets('script'))
 
-      for (const i in elements) {
-          if (elements.hasOwnProperty(i)) {
-              const element = elements[i];
+        for (const scriptElement of scriptElements) {
+            if (scriptElement.getAttribute(this.getQueryData('script')) == script) {
+                if (type == 'js') {
+                    scriptElement.setAttribute('type', 'text/javascript')
 
-              if (element.hasAttribute(this._name)) {
-                  if (element.getAttribute(this._name) == cookieType) {
-                      if (element.hasAttribute('type')) {
-                          if (type == 'js') {
-                              element.setAttribute('type', 'text/javascript');
-                              var attr = element.getAttribute('src');
-                              element.removeAttribute('src');
-                              element.setAttribute("src", attr);
-                          } else {
-                              element.setAttribute('type', 'text/plain');
-                          }
-                      }
-                  }
-              }
-          }
-      }
-    },
-    
-    /**
-     * addClickListener
-     * 
-     * For adding a event listner to a dom element
-     */
-    addClickListener: function (DOMElement, callback) {
-      DOMElement.addEventListener('click', callback);
+                    if (scriptElement.hasAttribute("src")) {
+                        scriptElement.setAttribute("src", element.getAttribute("src"))
+                    } else {
+                        scriptElement.innerHTML = scriptElement.innerHTML
+                    }
+                } else {
+                    scriptElement.setAttribute('type', 'text/plain')
+                }
+            }
+        }
     }
-  };
 
-  return Cookify;
-}));
+    /**
+     * Event Listeners
+     */
+
+    /**
+     * Event on mouse click
+     * 
+     * @param {event} e 
+     */
+    onMouseClick = e => {
+        var type = e.target.getAttribute(this.getQueryData('check')),
+            checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type)),
+            cookieState = this.getCookieState(type)
+
+        cookieState ? this.changeScriptType(type, 'plain') : this.changeScriptType(type, 'js')
+        this.changeCookieState(type, !cookieState)
+
+        for (const checkboxElement of checkboxElements) {
+            cookieState ? checkboxElement.checked = false : checkboxElement.checked = 'checked'
+        }
+    }
+}
