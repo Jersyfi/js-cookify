@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+        <title>Cookify Bootstrap Example</title>
+
+        <style>
+            body {
+                display: flex;
+                height: 100vh;
+            }
+
+            .main {
+                align-self: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h1>Cookify</h1>
+                            <p>You can open Cookify with the button below. You need to manually call your own Modal how you like it the most.</p>
+
+                            <div id="open" class="btn btn-primary shadow p-1 rounded-pill" data-c-view="button">
+                                <svg width="35" height="35" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                    <path d="M902.56,452.648C928.738,473.507 961.887,485.977 997.926,485.977C1006.55,485.977 1015.01,485.263 1023.24,483.892C1023.74,493.183 1024,502.562 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0L512.581,0.001C516.358,51.633 538.35,98.245 572.146,133.418C566.083,148.479 562.745,164.933 562.745,182.16C562.745,253.068 619.306,310.87 689.74,312.871C684.604,326.882 681.799,342.023 681.799,357.814C681.799,429.986 740.393,488.579 812.564,488.579C847.423,488.579 879.114,474.91 902.56,452.648Z" style="fill:rgb(164,123,75);"/>
+                                    <path d="M902.56,452.648C928.738,473.507 961.887,485.977 997.926,485.977C1006.55,485.977 1015.01,485.263 1023.24,483.892C1023.74,493.183 1024,502.562 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0L512.581,0.001C516.358,51.633 538.35,98.245 572.146,133.418C566.083,148.479 562.745,164.933 562.745,182.16C562.745,253.068 619.306,310.87 689.74,312.871C684.604,326.882 681.799,342.023 681.799,357.814C681.799,429.986 740.393,488.579 812.564,488.579C847.423,488.579 879.114,474.91 902.56,452.648ZM473.915,47.379C234.429,66.758 45.833,267.528 45.833,512C45.833,769.284 254.716,978.167 512,978.167C762.981,978.167 967.902,779.394 977.79,530.792C951.546,528.158 926.798,520.411 904.552,508.562C877.758,524.96 846.256,534.413 812.564,534.413C715.097,534.413 635.966,455.282 635.966,357.814C635.966,354.93 636.035,352.062 636.179,349.211C566.815,325.39 516.911,259.559 516.911,182.16C516.911,169.146 518.326,156.459 521.007,144.247C499.077,116.003 482.807,83.142 473.915,47.379Z"/>
+                                    <g transform="matrix(2.30328,0,0,2.30328,-1062.33,-223.122)">
+                                        <path d="M786.968,131.266C804.49,131.266 818.716,145.492 818.716,163.014C818.716,180.536 804.49,194.762 786.968,194.762C769.446,194.762 755.22,180.536 755.22,163.014C755.22,145.492 769.446,131.266 786.968,131.266ZM786.968,151.165C793.508,151.165 798.817,156.474 798.817,163.014C798.817,169.553 793.508,174.863 786.968,174.863C780.429,174.863 775.12,169.553 775.12,163.014C775.12,156.474 780.429,151.165 786.968,151.165Z"/>
+                                    </g>
+                                    <g transform="matrix(1.22746,0,0,1.22746,-142.571,144.17)">
+                                        <path d="M786.968,131.266C804.49,131.266 818.716,145.492 818.716,163.014C818.716,180.536 804.49,194.762 786.968,194.762C769.446,194.762 755.22,180.536 755.22,163.014C755.22,145.492 769.446,131.266 786.968,131.266ZM786.968,168.606C783.882,168.606 781.376,166.1 781.376,163.014C781.376,159.928 783.882,157.422 786.968,157.422C790.055,157.422 792.56,159.928 792.56,163.014C792.56,166.1 790.055,168.606 786.968,168.606Z"/>
+                                    </g>
+                                    <g transform="matrix(1,0,0,1,-96.5692,-27.9542)">
+                                        <circle cx="369.005" cy="607.533" r="124.523" style="fill:rgb(130,76,45);"/>
+                                        <path d="M369.005,483.01C437.731,483.01 493.528,538.807 493.528,607.533C493.528,676.26 437.731,732.057 369.005,732.057C300.278,732.057 244.481,676.26 244.481,607.533C244.481,538.807 300.278,483.01 369.005,483.01ZM369.005,528.843C412.435,528.843 447.695,564.103 447.695,607.533C447.695,650.963 412.435,686.223 369.005,686.223C325.574,686.223 290.314,650.963 290.314,607.533C290.314,564.103 325.574,528.843 369.005,528.843Z"/>
+                                    </g>
+                                    <g transform="matrix(1,0,0,1,-53.9873,-53.3672)">
+                                        <circle cx="649.182" cy="814.013" r="81.957" style="fill:rgb(130,76,45);"/>
+                                        <path d="M649.182,732.057C694.415,732.057 731.139,768.78 731.139,814.013C731.139,859.247 694.415,895.97 649.182,895.97C603.949,895.97 567.226,859.247 567.226,814.013C567.226,768.78 603.949,732.057 649.182,732.057ZM649.182,777.89C669.119,777.89 685.306,794.076 685.306,814.013C685.306,833.95 669.119,850.137 649.182,850.137C629.245,850.137 613.059,833.95 613.059,814.013C613.059,794.076 629.245,777.89 649.182,777.89Z"/>
+                                    </g>
+                                    <g transform="matrix(1,0,0,1,-88.8579,-49.8887)">
+                                        <circle cx="485.817" cy="394.152" r="88.858" style="fill:rgb(130,76,45);"/>
+                                        <path d="M485.817,305.294C534.859,305.294 574.675,345.11 574.675,394.152C574.675,443.194 534.859,483.01 485.817,483.01C436.775,483.01 396.959,443.194 396.959,394.152C396.959,345.11 436.775,305.294 485.817,305.294ZM485.817,351.127C509.563,351.127 528.841,370.406 528.841,394.152C528.841,417.898 509.563,437.176 485.817,437.176C462.071,437.176 442.792,417.898 442.792,394.152C442.792,370.406 462.071,351.127 485.817,351.127Z"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col text-center">
+                            <p>You are able to work with multiple checkboxes at the same time in order you want to display a List of all Cookies in the privacy policy.</p>
+
+                            <div>
+                                <div>
+                                    <table class="table text-start">
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <div class="form-check">
+                                                        <input data-c-check="necessary" class="form-check-input" type="checkbox" value="" id="necessary">
+                                                        <label class="form-check-label" for="necessary">
+                                                            Necessary
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                                <td>Strict necessary for the use of this website.</td>
+                                                <td>Session</td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <div class="form-check">
+                                                        <input data-c-check="marketing" class="form-check-input" type="checkbox" value="" id="marketing">
+                                                        <label class="form-check-label" for="marketing">
+                                                            Marketing
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                                <td>For tracking your shop activity when searching for products</td>
+                                                <td>1 Year</td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <div class="form-check">
+                                                        <input data-c-check="performance" class="form-check-input" type="checkbox" value="" id="performance">
+                                                        <label class="form-check-label" for="performance">
+                                                            Performance
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                                <td>Used for animations</td>
+                                                <td>1 Year</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div data-c-action="accept" class="btn btn-primary flex-fill me-1">
+                                    Save
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-3 fixed-bottom">
+            <div id="manage" class="p-3 bg-white shadow-lg d-none" data-c-view="manage">
+                <h2>Manage Cookies</h2>
+                <p>We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience. To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.</p>
+
+                <div class="my-3">
+                    <div class="form-check">
+                        <input data-c-check="necessary" class="form-check-input" type="checkbox" value="" id="necessary">
+                        <label class="form-check-label" for="necessary">
+                            Necessary
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input data-c-check="marketing" data-c-check-default="true" class="form-check-input" type="checkbox" value="" id="marketing">
+                        <label class="form-check-label" for="marketing">
+                            Marketing
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input data-c-check="performance" class="form-check-input" type="checkbox" value="" id="performance">
+                        <label class="form-check-label" for="performance">
+                            Performance
+                        </label>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div data-c-action="accept" class="btn btn-secondary flex-fill me-1">
+                        Accept
+                    </div>
+                    <div data-c-action="all" class="btn btn-primary flex-fill">
+                        All
+                    </div>
+                    <div data-c-action="necessary" class="btn btn-primary flex-fill ms-1">
+                        Necessary
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+        <script type="module">
+            import Cookify from '../src/index.js'
+
+            var cookify = new Cookify('cookie_consent', function () {
+                document.getElementById('manage').classList.add('d-none')
+            })
+
+            document.getElementById('open').addEventListener('click', function () {
+                document.getElementById('manage').classList.remove('d-none')
+            })
+
+            if (!cookify.getDataState(cookify.viewedName)) {
+                document.getElementById('manage').classList.remove('d-none')
+            }
+        </script>
+        <script type="text/plain" data-c-script="marketing">
+            console.log('This is an example for testing')
+        </script>
+    </body>
+</html>
