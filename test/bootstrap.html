@@ -22,7 +22,7 @@
     <body>
         <div class="main container">
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="col text-center">
                             <h1>Cookify</h1>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="m-3 fixed-bottom">
-            <div id="manage" class="p-3 bg-white shadow-lg d-none" data-c-view="manage">
+            <div id="manage" class="mx-md-5 p-3 bg-white shadow-lg rounded d-none" data-c-view="manage">
                 <h2>Manage Cookies</h2>
                 <p>We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience. To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.</p>
 
@@ -158,10 +158,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
         <script type="module">
-            import Cookify from '../src/index.js'
+            import Cookify from './index.js'
 
             var cookify = new Cookify('cookie_consent', function () {
                 document.getElementById('manage').classList.add('d-none')
+            }, function (data) {
+                console.log(data)
             })
 
             document.getElementById('open').addEventListener('click', function () {
