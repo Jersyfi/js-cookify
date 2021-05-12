@@ -16,6 +16,67 @@ This is a simple full customizable cookie consent banner for gdpr law. This libr
 ## Documentation
 (Working on)
 
+dataName -> string (default: cookify) \
+actionCallback -> function \
+trackingCallback -> function \
+saveWithChange -> boolean \
+saveByDefault -> boolean \
+cookieDefault -> string (default: necessary)
+
+```javascript
+import Cookify from Cookify()
+
+var cookify = new Cookify
+```
+
+When you want to now if the usere viewed the content aready use:
+
+```javascript
+cookify.getDataState(cookify.viewedName)
+```
+
+How to tag input fields
+
+```html
+<input data-c-check="necessary" type="checkbox">
+```
+
+You are able to set a preset value of the field. \
+When you don't set this default value it is false.
+
+```html
+<input data-c-check="necessary" data-c-check-default="true" type="checkbox">
+```
+
+How to tag script tags. \
+It is possible to use normal script or a script with src.
+
+```html
+<script type="text/plain" src="example.js" data-c-script="necessary"></script>
+
+<script type="text/plain" data-c-script="necessary">
+  console.log(example)
+</script>
+```
+
+How to tag action for saving the selection.
+You have 3 ways to for saving. Use `accept` when you want the user to save the selected fields, `all` will select all fields and save them and `necessary` is for selecting only the necessary field.
+
+```html
+<div data-c-action="accept">
+    Accept
+</div>
+
+<div data-c-action="all">
+    All
+</div>
+
+<div data-c-action="necessary">
+    Necessary
+</div>
+```
+
+
 ## Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
