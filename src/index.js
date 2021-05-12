@@ -1,12 +1,14 @@
 export default class Cookify {
-    constructor(saveByDefault = false, saveWithChange = false, cookieDefault = 'necessary') {
-        this.dataName = 'cookify'
+    constructor(dataName = 'cookify', actionCallback = () => {}, trackingCallback = () => {}, saveWithChange = false, saveByDefault = false, cookieDefault = 'necessary') {
+        this.dataName = dataName
         this.data = new Object
         this.query = 'data-c-'
+        this.trackingCallback = trackingCallback
         this.saveByDefault = saveByDefault
         this.saveWithChange = saveWithChange
         this.cookieDefault = cookieDefault
         this.viewedName = 'viewed'
+        this.actionCallback = actionCallback
 
         this.init()
     }
@@ -55,6 +57,10 @@ export default class Cookify {
 
                 for (const checkboxElement of checkboxElements) {
                     checkboxElement.checked = 'checked'
+
+                    if (type == this.cookieDefault) {
+                        checkboxElement.disabled = true
+                    }
                 }
 
                 this.changeScriptType(type, 'js')
@@ -148,6 +154,9 @@ export default class Cookify {
      * @param data
      */
     setMemoryData(data) {
+        // Callback for tracking user activity
+        this.trackingCallback(data)
+
         // Verschlüsselung
         data = btoa(JSON.stringify(data))
 
@@ -181,6 +190,7 @@ export default class Cookify {
      * 
      * @param {string} type 
      * @param {boolean} value 
+     * @returns {boolean} 
      */
     changeDataState(type, value) {
         for (const key in this.data) {
@@ -192,6 +202,7 @@ export default class Cookify {
         this.saveWithChange ? this.setMemoryData(this.data) : null
 
         // Call Event to let the user track activity
+        return value
     }
 
     /**
@@ -235,11 +246,11 @@ export default class Cookify {
             checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type)),
             cookieState = this.getDataState(type)
 
-        cookieState && this.saveWithChange ? this.changeScriptType(type, 'plain') : this.changeScriptType(type, 'js')
-        this.changeDataState(type, !cookieState)
+        cookieState = this.changeDataState(type, !cookieState)
+        cookieState && this.saveWithChange ? this.changeScriptType(type, 'js') : this.changeScriptType(type, 'plain')
 
         for (const checkboxElement of checkboxElements) {
-            cookieState ? checkboxElement.checked = false : checkboxElement.checked = 'checked'
+            cookieState ? checkboxElement.checked = 'checked' : checkboxElement.checked = false
         }
     }
 
@@ -255,6 +266,7 @@ export default class Cookify {
         
         this.data[this.viewedName] = true
         this.setMemoryData(this.data)
+        this.actionCallback()
     }
 
     /**
@@ -266,11 +278,18 @@ export default class Cookify {
             if (type != this.cookieDefault && type != this.viewedName) {
                 this.data[type] = false
                 this.changeScriptType(type, 'plain')
+
+                var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type))
+
+                for (const checkboxElement of checkboxElements) {
+                    checkboxElement.checked = false
+                }
             }
         }
 
         this.data[this.viewedName] = true
         this.setMemoryData(this.data)
+        this.actionCallback()
     }
 
     /**
@@ -282,9 +301,16 @@ export default class Cookify {
 
             if (type != this.viewedName) {
                 this.changeScriptType(type, 'js')
+
+                var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type))
+
+                for (const checkboxElement of checkboxElements) {
+                    checkboxElement.checked = 'checked'
+                }
             }
         }
 
         this.setMemoryData(this.data)
+        this.actionCallback()
     }
 }
