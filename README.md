@@ -35,6 +35,21 @@ When you want to now if the usere viewed the content aready use:
 cookify.getDataState(cookify.viewedName)
 ```
 
+### Query Names
+
+The query names are necessary for using Cookify. There are fifferent checkboces for controlling the cookie activity and you can handle the cookies with useful actions.
+
+**data-c-check="{string}"**
+  
+**data-c-check-default="{boolean}"** (default: false)
+  
+**data-c-action="{string}"**
+  - necessary (Save only the required cookies)
+  - all (Save the selected cookies)
+  - accept (Save all cookies)
+
+**data-c-script="{string}"** (only the names set in "**data-c-check**" can be used)
+
 How to tag input fields
 
 ```html
