@@ -17,16 +17,26 @@ This is a simple full customizable cookie consent banner for gdpr law. This libr
 (Working on)
 
 dataName -> string (default: cookify) \
-actionCallback -> function \
-trackingCallback -> function \
-saveWithChange -> boolean \
-saveByDefault -> boolean \
+actionCallback -> function (default: () => {})\
+trackingCallback -> function (default: () => {})\
+saveWithChange -> boolean (default: false)\
+saveByDefault -> boolean (default: false)\
 cookieDefault -> string (default: necessary)
 
 ```javascript
-import Cookify from Cookify()
+import Cookify from Cookify
 
 var cookify = new Cookify
+```
+
+Customization can be done like below.
+
+```javascript
+var cookify = new Cookify('cookie_consent', function () {
+    document.getElementById('element').style.display = none
+  }, function (data) {
+    console.log(data)
+  }, false, false, 'necessary')
 ```
 
 When you want to now if the usere viewed the content aready use:
