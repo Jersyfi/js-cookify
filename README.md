@@ -29,7 +29,12 @@ import Cookify from Cookify
 var cookify = new Cookify
 ```
 
-Customization can be done like below.
+Customization can be done like below. \
+Sheme is like so:
+
+```javascript
+var cookify = new Cookify(dataName, actionCallback, trackingCallback, saveWithChange, saveByDefault, cookieDefault)
+```
 
 ```javascript
 var cookify = new Cookify('cookie_consent', function () {
