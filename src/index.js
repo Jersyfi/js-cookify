@@ -155,7 +155,10 @@ export default class Cookify {
      */
     setMemoryData(data) {
         // Callback for tracking user activity
-        this.trackingCallback(data)
+        this.trackingCallback([
+            data,
+            new Date()
+        ])
 
         // Verschlüsselung
         data = btoa(JSON.stringify(data))
