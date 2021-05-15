@@ -164,7 +164,7 @@
                 document.getElementById('manage').classList.add('d-none')
             }, function (data) {
                 console.log(data)
-            })
+            }, false, false, 'necessary')
 
             document.getElementById('open').addEventListener('click', function () {
                 document.getElementById('manage').classList.remove('d-none')
