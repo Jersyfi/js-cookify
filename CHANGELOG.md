@@ -2,7 +2,12 @@
 
 All notable changes to `Cookify` will be documented in this file.
 
-## v3.0.0 - 2021-25-13
+## v3.0.1 - 2021-07-15
+
+- Modified test file with excluded source code implementation
+- Added both inline and src code for testing
+
+## v3.0.0 - 2021-05-15
 
 - Added different Events for actions
 - Added a new socialcard
