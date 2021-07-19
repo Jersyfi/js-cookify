@@ -2,6 +2,14 @@
 
 All notable changes to `Cookify` will be documented in this file.
 
+## v3.0.2 - 2021-07-19
+
+- Fixed Bug in `changeScriptType()` where scripts are not loaded in Firefox
+- Fixed Bug in `initCheckboxes()` where scripts loaded multiple times
+- Fixed Bug in test file where src is imported
+- Fixed Bug in event `onCheckboxClick` where script type changes directly to 'plain' without selected `saveWithChange`
+- Changed inline script in test file to 'performance'
+
 ## v3.0.1 - 2021-07-15
 
 - Modified test file with excluded source code implementation
