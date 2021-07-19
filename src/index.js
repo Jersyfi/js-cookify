@@ -47,7 +47,8 @@ export default class Cookify {
      * Initialize the checkboxes
      */
     initCheckboxes() {
-        var typeElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check'))
+        var typeElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check')),
+            checkChecked = new Array
 
         for (const typeElement of typeElements) {
             var type = typeElement.getAttribute(this.getQueryData('check'))
@@ -63,7 +64,8 @@ export default class Cookify {
                     }
                 }
 
-                this.changeScriptType(type, 'js')
+                !checkChecked[type] && this.changeScriptType(type, 'js')
+                checkChecked[type] = true
             }
         }
     }
@@ -221,13 +223,22 @@ export default class Cookify {
         for (const scriptElement of scriptElements) {
             if (scriptElement.getAttribute(this.getQueryData('script')) == script) {
                 if (type == 'js') {
-                    scriptElement.setAttribute('type', 'text/javascript')
+                    var reloadScriptElement = document.createElement('script'),
+                        parentScriptElement = scriptElement.parentNode
 
-                    if (scriptElement.hasAttribute("src")) {
-                        scriptElement.setAttribute("src", element.getAttribute("src"))
-                    } else {
-                        scriptElement.innerHTML = scriptElement.innerHTML
+                    for (const key in scriptElement.attributes) {
+                        if (scriptElement.attributes[key].value) {
+                            const attribute = scriptElement.attributes[key]
+                            
+                            reloadScriptElement.setAttribute(attribute.name, attribute.value)
+                        }
                     }
+
+                    reloadScriptElement.setAttribute('type', 'text/javascript')
+                    reloadScriptElement.innerHTML = scriptElement.innerHTML
+
+                    scriptElement.remove()
+                    parentScriptElement.appendChild(reloadScriptElement)
                 } else {
                     scriptElement.setAttribute('type', 'text/plain')
                 }
@@ -250,7 +261,7 @@ export default class Cookify {
             cookieState = this.getDataState(type)
 
         cookieState = this.changeDataState(type, !cookieState)
-        cookieState && this.saveWithChange ? this.changeScriptType(type, 'js') : this.changeScriptType(type, 'plain')
+        this.saveWithChange && (cookieState ? this.changeScriptType(type, 'js') : this.changeScriptType(type, 'plain'))
 
         for (const checkboxElement of checkboxElements) {
             cookieState ? checkboxElement.checked = 'checked' : checkboxElement.checked = false
