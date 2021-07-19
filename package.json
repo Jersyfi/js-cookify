@@ -1,6 +1,6 @@
 {
   "name": "cookify",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Simple, customizable open source cookie consent banner for GDPR law",
   "main": "cookify.js",
   "scripts": {
