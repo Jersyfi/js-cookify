@@ -1,5 +1,5 @@
 export default class Cookify {
-    constructor(dataName = 'cookify', actionCallback = () => {}, trackingCallback = () => {}, saveWithChange = false, saveByDefault = false, cookieDefault = 'necessary') {
+    constructor(dataName = 'cookify', actionCallback = () => {}, trackingCallback = () => {}, saveWithChange = false, saveByDefault = false, cookieDefault = 'necessary', initCallback = () => {}) {
         this.dataName = dataName
         this.data = new Object
         this.query = 'data-c-'
@@ -9,8 +9,13 @@ export default class Cookify {
         this.cookieDefault = cookieDefault
         this.viewedName = 'viewed'
         this.actionCallback = actionCallback
+        this.initCallback = initCallback
 
-        this.init()
+        //only init after load so that we definitely have all elements on the page present
+        var self = this;
+        window.addEventListener('load', function(event) {
+            self.init()
+        });
     }
 
     init() {
@@ -19,6 +24,8 @@ export default class Cookify {
         this.initCheckboxes()
 
         this.initListeners()
+
+        this.initCallback(this)
     }
 
     /**
