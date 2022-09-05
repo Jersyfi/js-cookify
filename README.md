@@ -40,7 +40,8 @@ var cookify = new Cookify(
     trackingCallback,
     saveWithChange,
     saveByDefault,
-    cookieDefault
+    cookieDefault,
+    initCallback
 )
 ```
 
@@ -96,7 +97,9 @@ You have 3 ways to for saving. Use `accept` when you want the user to save the s
 ```html
 <div data-c-action="necessary">Necessary</div>
 ```
+### Enabling or disabling content
 
+#### Scripts
 That you are able to handle the scripts for the user selected types you need to set `data-c-script` where it is necessary. It is only possible to use the types that are used in the query names `data-c-check`. This will either work for scripts with import src or with inline scripts.
 
 **data-c-script="{string}"**
@@ -107,6 +110,15 @@ That you are able to handle the scripts for the user selected types you need to 
 <script type="text/plain" data-c-script="necessary">
   console.log(example)
 </script>
+```
+
+#### Iframes and Images
+Instead of changing the type Cookify will switch the `src` element of iframe or img tags depending on the consent given. For that `data-c-fallback` (used if no consent was given) and `data-c-src` (used if consent was given) need to be set. The `data-c-script` attribute will be used to determine the category as for scripts. It is recommended to set the src already to the fallback to avoid connections before cookify is initialized.
+
+```html
+<img data-c-script="necessary" src="/path/to/fallback.jpg" data-c-fallback="/path/to/fallback.jpg" data-c-src="/example.jpg"/>
+
+<iframe data-c-script="necessary" src="about:blank" data-c-fallback="about:blank" data-c-src="https://example.org"></iframe>
 ```
 
 ### Helpers
