@@ -64,7 +64,7 @@ export default class Cookify {
                     }
                 }
 
-                !checkChecked[type] && this.changeScriptType(type, 'js')
+                !checkChecked[type] && this.changeConsent(type, true)
                 checkChecked[type] = true
             }
         }
@@ -247,6 +247,34 @@ export default class Cookify {
     }
 
     /**
+     * Changes the src of html tags to either the original source or the fallback source depending on the consent
+     * @param {string} tag  html tag to search for eg img or iframe
+     * @param {string} category
+     * @param {boolean} consentGiven
+     */
+    changeSource(tag, category, consentGiven) {
+        var elements = document.querySelectorAll(tag + this.getQueryDataBrackets('script'))
+        for (const element of elements) {
+            if (element.getAttribute(this.getQueryData('script')) === category) {
+                var prop = consentGiven ? 'src' : 'fallback';
+                var src = element.getAttribute(this.getQueryData(prop));
+                element.setAttribute('src', src);
+            }
+        }
+    }
+
+    /**
+     * Enables or disables content on the page for a consent for a given category
+     * @param {string} category
+     * @param {boolean} consentGiven
+     */
+    changeConsent(category, consentGiven) {
+        this.changeScriptType(category, consentGiven ? 'js' : 'plain')
+        this.changeSource('img', category, consentGiven)
+        this.changeSource('iframe', category, consentGiven)
+    }
+
+    /**
      * Event Listeners
      */
 
@@ -261,7 +289,7 @@ export default class Cookify {
             cookieState = this.getDataState(type)
 
         cookieState = this.changeDataState(type, !cookieState)
-        this.saveWithChange && (cookieState ? this.changeScriptType(type, 'js') : this.changeScriptType(type, 'plain'))
+        this.saveWithChange && this.changeConsent(type, cookieState)
 
         for (const checkboxElement of checkboxElements) {
             cookieState ? checkboxElement.checked = 'checked' : checkboxElement.checked = false
@@ -274,7 +302,7 @@ export default class Cookify {
     onActionAcceptClick = () => {
         for (const type in this.data) {
             if (type != this.viewedName) {
-                this.data[type] ? this.changeScriptType(type, 'js') : this.changeScriptType(type, 'plain')
+                this.changeConsent(type, this.data[type])
             }
         }
         
@@ -291,7 +319,7 @@ export default class Cookify {
         for (const type in this.data) {
             if (type != this.cookieDefault && type != this.viewedName) {
                 this.data[type] = false
-                this.changeScriptType(type, 'plain')
+                this.changeConsent(type, false)
 
                 var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type))
 
@@ -314,7 +342,7 @@ export default class Cookify {
             this.data[type] = true
 
             if (type != this.viewedName) {
-                this.changeScriptType(type, 'js')
+                this.changeConsent(type, true)
 
                 var checkboxElements = document.querySelectorAll('input' + this.getQueryDataBrackets('check', type))
 
