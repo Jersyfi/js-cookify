@@ -1,4 +1,4 @@
-import Cookify from '../../src/index'
+import Cookify from '../../src/index.js'
 
 var cookify = new Cookify('cookie_consent', () => {
         document.getElementById('manage').classList.add('d-none')
