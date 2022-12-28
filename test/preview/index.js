@@ -7,9 +7,9 @@ var cookify = new Cookify('cookie_consent', () => {
     }, false, false, 'necessary', () => {
         //show the cookie popup as long as the user has not seen it
         if (cookify.getDataState(cookify.viewedName)) {
-            document.getElementById('element').style.display = 'none';
+            document.getElementById('manage').style.display = 'none';
         } else {
-            document.getElementById('element').style.display = 'block';
+            document.getElementById('manage').style.display = 'block';
         }
     })
 
