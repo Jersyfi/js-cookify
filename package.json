@@ -1,10 +1,10 @@
 {
   "name": "cookify",
-  "version": "3.0.2",
+  "version": "4.0.1",
   "description": "Simple, customizable open source cookie consent banner for GDPR law",
   "main": "cookify.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/jersyfi/cookify/issues"
   },
-  "homepage": "https://github.com/jersyfi/cookify#readme"
+  "homepage": "https://github.com/jersyfi/cookify#readme",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
 }

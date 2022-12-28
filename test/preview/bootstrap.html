@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <title>Cookify Bootstrap Example</title>
+
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+        }
+
+        .main {
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col text-center">
+                        <h1>Cookify</h1>
+                        <p>You can open Cookify with the button below. You need to manually call your own Modal how you like it the most.</p>
+
+                        <div id="open" class="btn btn-primary shadow p-1 rounded-pill" data-c-view="button">
+                            <img src="../../assets/img/cookie.svg" alt="Cookie" height="35" width="35">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <p>You are able to work with multiple checkboxes at the same time in order you want to display a List of all Cookies in the privacy policy.</p>
+
+                        <div>
+                            <div>
+                                <table class="table text-start">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input data-c-check="necessary" class="form-check-input" type="checkbox" value="" id="necessary">
+                                                    <label class="form-check-label" for="necessary">
+                                                        Necessary
+                                                    </label>
+                                                </div>
+                                            </th>
+                                            <td>Strict necessary for the use of this website.</td>
+                                            <td>Session</td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input data-c-check="marketing" class="form-check-input" type="checkbox" value="" id="marketing">
+                                                    <label class="form-check-label" for="marketing">
+                                                        Marketing
+                                                    </label>
+                                                </div>
+                                            </th>
+                                            <td>For tracking your shop activity when searching for products</td>
+                                            <td>1 Year</td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input data-c-check="performance" class="form-check-input" type="checkbox" value="" id="performance">
+                                                    <label class="form-check-label" for="performance">
+                                                        Performance
+                                                    </label>
+                                                </div>
+                                            </th>
+                                            <td>Used for animations</td>
+                                            <td>1 Year</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div data-c-action="accept" class="btn btn-primary flex-fill me-1">
+                                Save
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-3 fixed-bottom">
+        <div id="manage" class="mx-md-5 p-3 bg-white shadow-lg rounded d-none" data-c-view="manage">
+            <h2>Manage Cookies</h2>
+            <p>We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience. To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.</p>
+
+            <div class="my-3">
+                <div class="form-check">
+                    <input data-c-check="necessary" class="form-check-input" type="checkbox" value="" id="necessary2">
+                    <label class="form-check-label" for="necessary2">
+                        Necessary
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input data-c-check="marketing" data-c-check-default="true" class="form-check-input" type="checkbox" value="" id="marketing2">
+                    <label class="form-check-label" for="marketing2">
+                        Marketing
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input data-c-check="performance" class="form-check-input" type="checkbox" value="" id="performance2">
+                    <label class="form-check-label" for="performance2">
+                        Performance
+                    </label>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div data-c-action="all" class="btn btn-primary flex-fill">
+                    All
+                </div>
+                <div data-c-action="accept" class="btn btn-secondary flex-fill me-1">
+                    Accept
+                </div>
+                <div data-c-action="necessary" class="btn btn-secondary flex-fill ms-1">
+                    Necessary
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+    <script type="module" src="index.js"></script>
+    <script type="text/plain" data-c-script="marketing" src="example.js"></script>
+    <script type="text/plain" data-c-script="performance">
+        console.log('This is a code example called from inline code')
+    </script>
+</body>
+</html>

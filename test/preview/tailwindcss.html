@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cookify Tailwind CSS Example</title>
+</head>
+<body>
+    <div class="container mx-auto max-w-screen-sm min-h-screen text-center flex">
+        <div class="my-auto px-2 py-4 sm:px-4 sm:py-8 grid gap-8">
+            <div>
+                <h1 class="text-4xl font-semibold mb-2">Cookify</h1>
+                <p class="mb-4">You can open Cookify with the button below. You need to manually call your own Modal how you like it the most.</p>
+
+                <button id="open" data-c-view="button" class="mx-auto w-fit p-1 bg-blue-600 hover:bg-blue-500 rounded-full shadow-md hover:shadow-lg shadow-black/50 hover:shadow-black/50 transition duration-500">
+                    <img class="inline-block" src="../../assets/img/cookie.svg" alt="Cookie" height="35" width="35">
+                </button>
+            </div>
+
+            <div>
+                <p class="mb-4">You are able to work with multiple checkboxes at the same time in order you want to display a List of all Cookies in the privacy policy.</p>
+
+                <div class="table w-full border-collapse mb-4">
+                    <div class="table-row-group divide-y divide-gray-200">
+                        <div class="table-row">
+                            <div class="table-cell text-left p-2 font-bold whitespace-nowrap">
+                                <div class="">
+                                    <input data-c-check="necessary" class="" type="checkbox" value="" id="necessary" checked="checked" disabled>
+                                    <label class="" for="necessary">
+                                        Necessary
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="table-cell text-left p-2">Strict necessary for the use of this website.</div>
+                            <div class="table-cell text-left p-2">Session</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell text-left p-2 font-bold whitespace-nowrap">
+                                <div class="">
+                                    <input data-c-check="marketing" class="" type="checkbox" value="" id="marketing">
+                                    <label class="" for="marketing">
+                                        Marketing
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="table-cell text-left p-2">For tracking your shop activity when searching for products</div>
+                            <div class="table-cell text-left p-2">1 Year</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell text-left p-2 font-bold whitespace-nowrap">
+                                <div class="">
+                                    <input data-c-check="performance" class="" type="checkbox" value="" id="performance">
+                                    <label class="" for="performance">
+                                        Performance
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="table-cell text-left p-2">Used for animations</div>
+                            <div class="table-cell text-left p-2">1 Year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button data-c-action="accept" class="font-medium mx-auto w-fit px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-md shadow-md hover:shadow-lg shadow-black/50 hover:shadow-black/50 transition duration-500 text-white">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto bg-black/30">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h2 class="text-2xl font-semibold mb-2">Manage Cookies</h2>
+                    <p class="mb-4">We use cookies to provide and secure our websites, as well as to analyze the usage of our websites, in order to offer you a great user experience. To learn more about our use of cookies see our <a href="#" target="_blank">Privacy Policy</a>.</p>
+
+                    <div class="font-bold">
+                        <input data-c-check="necessary" class="" type="checkbox" value="" id="necessary2" checked="checked" disabled>
+                        <label class="" for="necessary2">
+                            Necessary
+                        </label>
+                    </div>
+
+                    <div class="font-bold">
+                        <input data-c-check="marketing" data-c-check-default="true" class="" type="checkbox" value="" id="marketing2">
+                        <label class="" for="marketing2">
+                            Marketing
+                        </label>
+                    </div>
+
+                    <div class="font-bold">
+                        <input data-c-check="performance" class="" type="checkbox" value="" id="performance2">
+                        <label class="" for="performance2">
+                            Performance
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 px-4 py-3 flex flex-col sm:flex-row-reverse sm:px-6 gap-3">
+                    <button data-c-action="all" class="inline-flex w-full font-medium justify-center w-fit px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-md shadow-md hover:shadow-lg shadow-black/50 hover:shadow-black/50 transition duration-500 text-white">
+                        All
+                    </button>
+                    <button data-c-action="accept" class="inline-flex w-full font-medium justify-center w-fit px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded-md shadow-md hover:shadow-lg shadow-black/50 hover:shadow-black/50 transition duration-500 text-white">
+                        Accept
+                    </button>
+                    <button data-c-action="necessary" class="inline-flex w-full font-medium justify-center w-fit px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded-md shadow-md hover:shadow-lg shadow-black/50 hover:shadow-black/50 transition duration-500 text-white">
+                        Necessary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+    <script type="text/plain" data-c-script="marketing" src="example.js"></script>
+    <script type="text/plain" data-c-script="performance">
+        console.log('This is a code example called from inline code')
+    </script>
+</body>
+</html>
