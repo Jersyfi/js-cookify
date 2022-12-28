@@ -1,4 +1,4 @@
-<p align="center"><img src="/img/socialcard.jpg" alt="Social Card of Cookify"></p>
+<p align="center"><img src="/assets/img/socialcard.jpg" alt="Social Card of Cookify"></p>
 
 ![NPM Downloads](https://img.shields.io/npm/dt/cookify)
 ![NPM](https://img.shields.io/npm/v/cookify)
