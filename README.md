@@ -11,7 +11,9 @@
 This is a simple full customizable cookie consent banner for gdpr law. This library is build on pure javascript for easy customization. You can choose your own CSS Framework, your own styles and only need to define query selectors.
 
 ### Live preview
-View the test file live on GitHub Pages with clicking [here](https://jersyfi.github.io/Cookify/test/bootstrap.html).
+View the test file live on GitHub Pages and get in touch with Cookify. The test file used the Vanilla JS version.
+- [Bootstrap](https://jersyfi.github.io/Cookify/test/preview/bootstrap.html)
+- [Tailwind CSS](https://jersyfi.github.io/Cookify/test/preview/bootstrap.html)
 
 ## Documentation
 
