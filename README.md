@@ -13,7 +13,7 @@ This is a simple full customizable cookie consent banner for gdpr law. This libr
 ### Live preview
 View the test file live on GitHub Pages and get in touch with Cookify. The test file used the Vanilla JS version.
 - [Bootstrap](https://jersyfi.github.io/Cookify/test/preview/bootstrap.html)
-- [Tailwind CSS](https://jersyfi.github.io/Cookify/test/preview/bootstrap.html)
+- [Tailwind CSS](https://jersyfi.github.io/Cookify/test/preview/tailwindcss.html)
 
 ## Documentation
 
