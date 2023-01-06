@@ -10,11 +10,11 @@
 ## General info
 This is a simple full customizable cookie consent banner for gdpr law. This library is build on pure javascript for easy customization. You can choose your own CSS Framework, your own styles and only need to define query selectors.
 
-| Framework  | State      | Repository                                                        |
-| :---       | :---       | :---                                                              |
-| Vanilla JS | Production | [@Jersyfi/cookify](https://github.com/Jersyfi/Cookify)            |
-| React      | Dev        | [@Jersyfi/react-cookify](https://github.com/Jersyfi/react-ookify) |
-| Vue.js     | Planned    | -                                                                 |
+| Framework  | State      | Repository                                                         |
+| :---       | :---       | :---                                                               |
+| Vanilla JS | Production | [@Jersyfi/cookify](https://github.com/Jersyfi/Cookify)             |
+| React      | Dev        | [@Jersyfi/react-cookify](https://github.com/Jersyfi/react-cookify) |
+| Vue.js     | Planned    | -                                                                  |
 
 | Frameworks /<br> Features | Vanilla JS | React | Vue.js |
 | :---                      | :---: | :---: | :---: |
