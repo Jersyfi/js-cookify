@@ -143,7 +143,7 @@ cookify.getDataState('type')
 cookify.getDataState(cookify.viewedName)
 ```
 
-## Library Languages & Features
+## Framework Support & Features
 
 | Framework  | State      | Repository                                                         |
 | :---       | :---       | :---                                                               |
