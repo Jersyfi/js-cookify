@@ -151,17 +151,17 @@ cookify.getDataState(cookify.viewedName)
 | React      | Dev        | [@Jersyfi/react-cookify](https://github.com/Jersyfi/react-cookify) |
 | Vue.js     | Planned    | -                                                                  |
 
-| Frameworks /<br> Features | Vanilla JS | React | Vue.js |
-| :---                      | :---: | :---: | :---: |
-| TypeScript                | ❌ | ✅ | ❌ |
-| Headless                  | ✅ | ✅ | ❌ |
-| Customizable              | ✅ | ✅ | ❌ |
-| Tracking                  | ✅ | ✅ | ❌ |
-| Storage: *Cookies*        | ✅ | ✅ | ❌ |
-| Storage: *Local Storage*  | ❌ | ❌ | ❌ |
-| Managing: *Script* [^1]   | ✅ | ⚠️ | ❌ |
-| Managing: *Img* [^1]      | ✅ | ⚠️ | ❌ |
-| Managing: *iframe* [^1]   | ✅ | ⚠️ | ❌ |
+| Frameworks /<br> Features   | Vanilla JS | React | Vue.js |
+| :---                        | :---: | :---: | :---: |
+| TypeScript                  | ❌ | ✅ | ❌ |
+| Headless                    | ✅ | ✅ | ❌ |
+| Customizable                | ✅ | ✅ | ❌ |
+| Tracking                    | ✅ | ✅ | ❌ |
+| Storage: *HTTP cookies*     | ✅ | ✅ | ❌ |
+| Storage: *Web Storage API*  | ❌ | ❌ | ❌ |
+| Managing: *Script* [^1]     | ✅ | ⚠️ | ❌ |
+| Managing: *Img* [^1]        | ✅ | ⚠️ | ❌ |
+| Managing: *iframe* [^1]     | ✅ | ⚠️ | ❌ |
 
 [^1]: ⚠️ Only in Vanilla JS the support is integrated because in Framworks like React you can do it with the state `consentObject`
 
