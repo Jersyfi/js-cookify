@@ -153,6 +153,7 @@ cookify.getDataState(cookify.viewedName)
 
 | Frameworks /<br> Features | Vanilla JS | React | Vue.js |
 | :---                      | :---: | :---: | :---: |
+| TypeScript                | ❌ | ✅ | ❌ |
 | Headless                  | ✅ | ✅ | ❌ |
 | Customizable              | ✅ | ✅ | ❌ |
 | Tracking                  | ✅ | ✅ | ❌ |
