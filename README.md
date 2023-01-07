@@ -158,7 +158,7 @@ cookify.getDataState(cookify.viewedName)
 | Customizable              | ✅ | ✅ | ❌ |
 | Tracking                  | ✅ | ✅ | ❌ |
 | Storage: *Cookies*        | ✅ | ✅ | ❌ |
-| Storage: *Local Storage*  | ✅ | ✅ | ❌ |
+| Storage: *Local Storage*  | ❌ | ❌ | ❌ |
 | Managing: *Script* [^1]   | ✅ | ⚠️ | ❌ |
 | Managing: *Img* [^1]      | ✅ | ⚠️ | ❌ |
 | Managing: *iframe* [^1]   | ✅ | ⚠️ | ❌ |
