@@ -165,6 +165,9 @@ cookify.getDataState(cookify.viewedName)
 
 [^1]: ⚠️ Only in Vanilla JS the support is integrated because in Framworks like React you can do it with the state `consentObject`
 
+## Roadmap Overview
+![null](https://user-images.githubusercontent.com/64214261/211401065-3a622b5c-dc57-4719-9f2e-eea714b156e7.png)
+
 ## Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
